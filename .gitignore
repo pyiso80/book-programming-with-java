@@ -1,0 +1,9 @@
+*.teer
+**/.DS_Store
+.abc
+*.aux
+*.log
+*.pdf
+*.gz
+*.toc
+*.out

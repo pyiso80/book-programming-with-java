@@ -1,0 +1,209 @@
+%!TEX TS-program = xelatex  
+%!TEX encoding = UTF-8 Unicode
+\documentclass[twoside, hidelinks]{book}
+\hfuzz=10000pt
+\hbadness=99999
+\usepackage[paperheight=9.25in,
+                paperwidth=7.38in,
+                left=1.4in,
+                right=.75in,
+                top=.75in,
+                bottom=1.25in,
+                footskip=0.6in,
+                heightrounded]{geometry}
+                
+\usepackage[dvipsnames]{xcolor}
+\usepackage{varioref}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage{fontspec}
+\usepackage{titlesec} 
+\usepackage{titletoc} 
+\usepackage{listings}
+\usepackage{caption}
+\usepackage[unicode=true]{hyperref}
+
+
+%%%  Replace english with Myanmar, tweaking varioref package 
+\def\reftextfaceafter{on the \reftextvario{facing}{next} စာမျက်နှာ}%
+\def\reftextfacebefore{on the \reftextvario{facing}{preceding}စာမျက်နှာ}%
+\def\reftextafter{on the \reftextvario{following}{next} စာမျက်နှာ}%
+\def\reftextbefore{on the \reftextvario{preceding}{previous} စာမျက်နှာ}%
+\def\reftextcurrent{on \reftextvario{this}{the current} စာမျက်နှာ}%
+\def\reftextfaraway#1{စာမျက်နှာ~\pageref{#1}}%
+\def\reftextpagerange#1#2{on စာမျက်နှာ၂၂~\pageref{#1}--\pageref{#2}}%
+\def\reftextlabelrange#1#2{\ref{#1} to~\ref{#2}}%
+
+
+%%% Replace english names with Myanmar
+\renewcommand{\contentsname}{မာတိကာ} 
+\renewcommand{\chaptername}{}
+\renewcommand{\figurename}{ပုံ}
+
+
+%%% definition of Apple colors
+\definecolor{iron}{HTML}{5E5E5E}
+\definecolor{steel}{HTML}{797979}
+\definecolor{tungsten}{HTML}{424242}
+\definecolor{lead}{HTML}{212121}
+\definecolor{steelblue}{HTML}{36648B}
+
+
+%%% Page style related stuff
+\fancyhf{}
+\fancyhead[LE]{\color{steelblue}\mmpdkb\nouppercase{\leftmark}}
+\fancyhead[RO]{\color{steelblue}\mmpdkb\nouppercase{\rightmark}}
+\fancyfoot[LE,RO]{\thepage}
+\pagestyle{fancy}
+\setlength{\headsep}{15pt}
+\setlength{\headheight}{30pt}% ...at least 51.60004pt
+\renewcommand\headrule{
+\begin{minipage}
+    {1\textwidth}
+    \color{MidnightBlue}\hrule width \hsize \kern 1mm 
+    \color{MidnightBlue}\hrule width \hsize height 2pt 
+\end{minipage}}%
+
+
+%%% Font related tweaks
+\defaultfontfeatures{Script=Myanmar,Mapping=tex-text} 
+\fontspec[Script=Myanmar, BoldFont={Padauk Book Bold}, ]{Padauk Book}
+\setmainfont[Color=tungsten, UprightFont={Padauk Book},
+                BoldFont={Padauk Book Bold},
+                ItalicFont={Padauk Book},
+                BoldItalicFont={Padauk Book Bold},
+                SmallCapsFont={Padauk Book},
+                SlantedFont={Padauk Book}]{Padauk Book}
+                [Renderer=Harfbuzz,Script=Myanmar]
+
+
+%%% Define fonts english font to be used in between Myanmar text               
+% Helvetica Neue, Geneva, Tahoma
+% Font for normal english words and program code related words to be used in paragraph
+\newfontfamily\myparaen[Color=tungsten, Scale=MatchLowercase]{Verdana}
+\newfontfamily\mycode[Color=lead, Scale=1]{Ubuntu Mono}
+
+\DeclareTextFontCommand{\txtmyparaen}{\myparaen}
+\DeclareTextFontCommand{\txtmycode}{\mycode}
+
+\DeclareCaptionFont{mysize}{\color{iron}\fontspec[Script=Myanmar,Scale=0.9]{Pyidaungsu Bold}\selectfont}
+\captionsetup{font=mysize}
+
+\newcommand{\mmem}[1]{\textbf{\color{blue}#1}}
+\newcommand{\mmpdk}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+\newcommand{\mmpdkb}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont} 
+\newcommand{\mmpdkbk}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu} \selectfont}
+\newcommand{\mmpdkbkb}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu} \selectfont}
+\newcommand{\myttlcode}{\fontspec[Scale=1]{Ubuntu Mono Bold} \selectfont} 
+
+
+%changes the spacing for everything in the document, including footnotes and tables 
+\renewcommand{\baselinestretch}{1.35} 
+
+
+%%% Auto numbering in Myanmar %%%
+%This macro is to produce myanmar numbering by adopting the thai numbering method
+\makeatletter  
+\def\@mmnum#1{\expandafter\@@mmnum\number#1\@nil}  
+\def\@@mmnum#1{%  
+  \ifx#1\@nil  
+  \else  
+  \char\numexpr#1+"1040\relax  
+  \expandafter\@@mmnum\fi  
+}  
+\renewcommand\@arabic{\@mmnum} % to reset number in \arabic to \mmnum 
+\makeatother 
+
+
+%%%% Style part, chapter, section, subsection, subsubsection heading and table of contents
+% For table of contents
+\contentsmargin[1cm]{0cm}
+\titlecontents{chapter}[0em]{\color{steelblue}\mmpdkb}
+{\thecontentslabel\enspace}
+{\hspace{1.05em}}
+{ \hfill\contentspage}[\vskip 6pt]
+
+\titlecontents{section}[1em]{\color{steelblue}\mmpdk}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
+
+\titlecontents{subsection}[2.7em]{\color{steelblue}\mmpdk}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
+
+% For headings
+\titleformat{\section}[block] 
+{\color{MidnightBlue}\large \mmpdkb}{{\color{MidnightBlue}\large\thesection}}{1em}{}
+
+\titleformat{\subsection}[block] 
+{\color{MidnightBlue}\normalsize \mmpdkbkb}{{\color{MidnightBlue}\normalsize\thesubsection}}{1em}{}
+
+\titleformat{\subsubsection}[block] 
+{\color{MidnightBlue}\normalsize\mmpdkbkb }{{\color{MidnightBlue}\normalsize\thesubsubsection}}{1em}{}
+
+\titleformat{\chapter}[display] 
+    {\color{MidnightBlue}\LARGE\mmpdkb}{\color{MidnightBlue}{\Huge\mmpdkb\thechapter}}{1ex}
+    {\filright} 
+
+\titleformat{\part}[display] 
+{\filcenter\LARGE\mmpdkbkb}{{\large\partname\; \thepart}}{1em}{\thispagestyle{empty}}
+
+%%% Code listing related
+\newfontface\pgcode[Scale=0.9, BoldFont={Ubuntu Mono Bold}]{Ubuntu Mono}
+\lstset{
+  language     = Java,
+  basicstyle   = \pgcode,
+  commentstyle = \color{gray},
+  keywordstyle = \color{darkgray}\textbf,
+  stringstyle  = \color{green!70!black},
+  stringstyle  = \color{red},
+  columns      = fullflexible,
+  numbers      = left,
+  numberstyle  = \scriptsize\sffamily\color{gray},
+  caption      = A hello world program in Java,
+  showstringspaces = false,
+}
+
+%%% Custom utility commands
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd\value{page}\hbox{}\newpage\fi
+}
+
+\newcommand{\Fig}{ပုံ\xspace}
+\newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\txtmyparaen{(programming)}}}
+\newcommand{\mmprogramming}{ပရိုဂရမ်းမင်း}
+\newcommand{\enprogram}{ပရိုဂရမ်{\txtmyparaen{(program)}}}
+\newcommand{\mmprogram}{ပရိုဂရမ်}
+\newcommand{\encommand}{ကွန်မန်း{\txtmyparaen{(command)}}}
+\newcommand{\mmcommand}{ကွန်မန်း}
+\newcommand{\encorner}{ကွန်နာ{\txtmyparaen{(corner)}}}
+\newcommand{\mmcorner}{ကွန်နာ}
+\newcommand{\embeeper}{ဘိပါ{\txtmyparaen{(beeper)}}}
+\newcommand{\mmbeeper}{ဘိပါ}
+
+
+\title{\mmpdkbkb အခြေခံ ပရိုဂရမ် ရေးနည်း } 
+\author{ပြည်စိုး} 
+\date{၀၅/၀၅/၂၀၂၂}
+
+\begin{document}
+
+\setcounter{secnumdepth}{3} % counter for susubsection
+\setcounter{tocdepth}{3} % to view susubsection in toc
+
+\frontmatter
+\maketitle
+\tableofcontents
+\cleardoublepage
+
+\mainmatter
+\include{ch01}
+\include{ch02}
+\include{ch03}
+
+\end{document}
