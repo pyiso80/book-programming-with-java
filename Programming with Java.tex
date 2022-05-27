@@ -53,8 +53,8 @@
 
 %%% Page style related stuff
 \fancyhf{}
-\fancyhead[LE]{\color{steelblue}\mmpdkb\nouppercase{\leftmark}}
-\fancyhead[RO]{\color{steelblue}\mmpdkb\nouppercase{\rightmark}}
+\fancyhead[LE]{\color{steelblue}\bfseries\mmpdkb\nouppercase{\leftmark}}
+\fancyhead[RO]{\color{steelblue}\bfseries\mmpdkb\nouppercase{\rightmark}}
 \fancyfoot[LE,RO]{\thepage}
 \pagestyle{fancy}
 \setlength{\headsep}{15pt}
@@ -83,21 +83,24 @@
 % Helvetica Neue, Geneva, Tahoma
 % Font for normal english words and program code related words to be used in paragraph
 \newfontfamily\myparaen[Color=tungsten, Scale=MatchLowercase]{Verdana}
-\newfontfamily\mycode[Color=lead, Scale=1]{Ubuntu Mono}
+%\newfontfamily\mycode[Color=lead, Scale=1]{Ubuntu Mono}
 
-\DeclareTextFontCommand{\txtmyparaen}{\myparaen}
-\DeclareTextFontCommand{\txtmycode}{\mycode}
+%\DeclareTextFontCommand{\myen}{\myparaen}
+%\DeclareTextFontCommand{\txtmycode}{\mycode}
 
 \DeclareCaptionFont{mysize}{\color{iron}\fontspec[Script=Myanmar,Scale=0.9]{Pyidaungsu Bold}\selectfont}
 \captionsetup{font=mysize}
 
 \newcommand{\mmem}[1]{\textbf{\color{blue}#1}}
-\newcommand{\mmpdk}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
-\newcommand{\mmpdkb}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont} 
-\newcommand{\mmpdkbk}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu} \selectfont}
-\newcommand{\mmpdkbkb}{\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu} \selectfont}
-\newcommand{\myttlcode}{\fontspec[Scale=1]{Ubuntu Mono Bold} \selectfont} 
 
+\newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+\newcommand{\mmpdkb}      {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont} 
+\newcommand{\mmpdkbk}     {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+\newcommand{\mmpdkbkb}    {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+\newcommand{\mycodetmp}   {\fontspec[Scale=1]{Ubuntu Mono}\selectfont}
+\newcommand{\myentmp}   {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+\newcommand{\mycode}   [1]{{\mycodetmp{#1}}}
+\newcommand{\myen}   [1]{{\myentmp{#1}}}
 
 %changes the spacing for everything in the document, including footnotes and tables 
 \renewcommand{\baselinestretch}{1.35} 
@@ -120,24 +123,24 @@
 %%%% Style part, chapter, section, subsection, subsubsection heading and table of contents
 % For table of contents
 \contentsmargin[1cm]{0cm}
-\titlecontents{chapter}[0em]{\color{steelblue}\mmpdkb}
+\titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries\mmpdk}
 {\thecontentslabel\enspace}
 {\hspace{1.05em}}
 { \hfill\contentspage}[\vskip 6pt]
 
-\titlecontents{section}[1em]{\color{steelblue}\mmpdk}
+\titlecontents{section}[1em]{\color{steelblue}\normalsize\bfseries\mmpdk}
 {\thecontentslabel\enspace}
 {}
 {\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
 
-\titlecontents{subsection}[2.7em]{\color{steelblue}\mmpdk}
+\titlecontents{subsection}[2.7em]{\color{steelblue}\normalfont\bfseries\mmpdk}
 {\thecontentslabel\enspace}
 {}
 {\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
 
 % For headings
 \titleformat{\section}[block] 
-{\color{MidnightBlue}\large \mmpdkb}{{\color{MidnightBlue}\large\thesection}}{1em}{}
+{\color{MidnightBlue}\normalfont\large\bfseries\mmpdk }{{\color{MidnightBlue}\large\thesection}}{1em}{}
 
 \titleformat{\subsection}[block] 
 {\color{MidnightBlue}\normalsize \mmpdkbkb}{{\color{MidnightBlue}\normalsize\thesubsection}}{1em}{}
@@ -146,7 +149,7 @@
 {\color{MidnightBlue}\normalsize\mmpdkbkb }{{\color{MidnightBlue}\normalsize\thesubsubsection}}{1em}{}
 
 \titleformat{\chapter}[display] 
-    {\color{MidnightBlue}\LARGE\mmpdkb}{\color{MidnightBlue}{\Huge\mmpdkb\thechapter}}{1ex}
+    {\color{MidnightBlue}\normalfont\Huge\bfseries\mmpdkb }{\color{MidnightBlue}{\Huge\mmpdkb\thechapter}}{1ex}
     {\filright} 
 
 \titleformat{\part}[display] 
@@ -174,17 +177,29 @@
   \ifodd\value{page}\hbox{}\newpage\fi
 }
 
+\newcommand{\todef}[1]{\bfseries{#1} \xspace}
+\newcommand{\toem}[1]{\bfseries{#1} \xspace}
+
+
 \newcommand{\Fig}{ပုံ\xspace}
-\newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\txtmyparaen{(programming)}}}
+\newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\myen{(programming)}}}
 \newcommand{\mmprogramming}{ပရိုဂရမ်းမင်း}
-\newcommand{\enprogram}{ပရိုဂရမ်{\txtmyparaen{(program)}}}
+\newcommand{\enprogram}{ပရိုဂရမ်{\myen{(program)}}}
 \newcommand{\mmprogram}{ပရိုဂရမ်}
-\newcommand{\encommand}{ကွန်မန်း{\txtmyparaen{(command)}}}
+\newcommand{\encommand}{ကွန်မန်း{\myen{(command)}}}
 \newcommand{\mmcommand}{ကွန်မန်း}
-\newcommand{\encorner}{ကွန်နာ{\txtmyparaen{(corner)}}}
+\newcommand{\encorner}{ကွန်နာ{\myen{(corner)}}}
 \newcommand{\mmcorner}{ကွန်နာ}
-\newcommand{\embeeper}{ဘိပါ{\txtmyparaen{(beeper)}}}
+\newcommand{\enbeeper}{ဘိပါ{\myen{(beeper)}}}
 \newcommand{\mmbeeper}{ဘိပါ}
+\newcommand{\enprogramCode}{ပရိုဂရမ်ကုဒ်{\myen{(program code)}}}
+\newcommand{\mmprogramCode}{ပရိုဂရမ်ကုဒ်}
+\newcommand{\enprogrammingLanguageDef}{ပရိုဂရမ်ရေးရန် အသုံးပြုသည့် ဘာသာစကား{\myen{(programming language)}}}
+\newcommand{\enprogrammingLanguage}{{\myen{programming language}}\xspace}
+\newcommand{\encontrolFlowStatement}{{\myen{control flow statement}}\xspace}
+
+\newcommand{\enprog}{{\enprogramming}}
+
 
 
 \title{\mmpdkbkb အခြေခံ ပရိုဂရမ် ရေးနည်း } 
