@@ -53,8 +53,8 @@
 
 %%% Page style related stuff
 \fancyhf{}
-\fancyhead[LE]{\color{steelblue}\bfseries\mmpdkb\nouppercase{\leftmark}}
-\fancyhead[RO]{\color{steelblue}\bfseries\mmpdkb\nouppercase{\rightmark}}
+\fancyhead[LE]{\color{steelblue}\bfseries\mmpdk\nouppercase{\leftmark}}
+\fancyhead[RO]{\color{steelblue}\bfseries\mmpdk\nouppercase{\rightmark}}
 \fancyfoot[LE,RO]{\thepage}
 \pagestyle{fancy}
 \setlength{\headsep}{15pt}
@@ -70,7 +70,7 @@
 %%% Font related tweaks
 \defaultfontfeatures{Script=Myanmar,Mapping=tex-text} 
 \fontspec[Script=Myanmar, BoldFont={Padauk Book Bold}, ]{Padauk Book}
-\setmainfont[Color=tungsten, UprightFont={Padauk Book},
+\setmainfont[UprightFont={Padauk Book},
                 BoldFont={Padauk Book Bold},
                 ItalicFont={Padauk Book},
                 BoldItalicFont={Padauk Book Bold},
@@ -82,27 +82,53 @@
 %%% Define fonts english font to be used in between Myanmar text               
 % Helvetica Neue, Geneva, Tahoma
 % Font for normal english words and program code related words to be used in paragraph
-\newfontfamily\myparaen[Color=tungsten, Scale=MatchLowercase]{Verdana}
+%\newfontfamily\myparaen[Color=tungsten, Scale=MatchLowercase]{Verdana}
 %\newfontfamily\mycode[Color=lead, Scale=1]{Ubuntu Mono}
 
 %\DeclareTextFontCommand{\myen}{\myparaen}
 %\DeclareTextFontCommand{\txtmycode}{\mycode}
 
-\DeclareCaptionFont{mysize}{\color{iron}\fontspec[Script=Myanmar,Scale=0.9]{Pyidaungsu Bold}\selectfont}
-\captionsetup{font=mysize}
-
 \newcommand{\mmem}[1]{\textbf{\color{blue}#1}}
 
 \newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
-\newcommand{\mmpdkb}      {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont} 
-\newcommand{\mmpdkbk}     {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
-\newcommand{\mmpdkbkb}    {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+
+%%% Switching to type writer font and sans serif font in paragraph
+% Make sure to set the color to match the main font color
 \newcommand{\mycodetmp}   {\fontspec[Scale=1]{Ubuntu Mono}\selectfont}
-\newcommand{\myentmp}   {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+\newcommand{\myentmp}     {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+% Limiting the scope of the selected font
 \newcommand{\mycode}   [1]{{\mycodetmp{#1}}}
 \newcommand{\myen}   [1]{{\myentmp{#1}}}
 
-%changes the spacing for everything in the document, including footnotes and tables 
+%%% With \XeTeXinterwordspaceshaping=2, \color or \textcolor doesn't work 
+% This is a workaround to color text 
+\newcommand{\myemcodetmp}   {\fontspec[Scale=1, Color=red]{Ubuntu Mono}\selectfont}
+\newcommand{\myementmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=red]{Verdana}\selectfont}
+\newcommand{\myemmmtmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=red]{Padauk Book}\selectfont}
+% Limiting the scope of the selected font
+\newcommand{\myemcode}   [1]{{\myemcodetmp{#1}}}
+\newcommand{\myemen}   [1]{{\myementmp{#1}}}
+\newcommand{\myemmm}   [1]{{\myemmmtmp{#1}}}
+
+\newcommand{\mydefcodetmp}   {\fontspec[Scale=1, Color=MidnightBlue]{Ubuntu Mono}\selectfont}
+\newcommand{\mydefentmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=MidnightBlue]{Verdana}\selectfont}
+\newcommand{\mydefmmtmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=MidnightBlue]{Padauk Book}\selectfont}
+% Limiting the scope of the selected font
+\newcommand{\mydefcode}   [1]{{\mydefcodetmp{#1}}}
+\newcommand{\mydefen}   [1]{{\mydefentmp{#1}}}
+\newcommand{\mydefmm}   [1]{{\mydefmmtmp{#1}}}
+
+
+%%% Switching to type writer font and sans serif font in titles and caption
+% Make sure not to set the color. Color should be applied later at the respective
+% formatting applied to titles, caption, headers etc.,
+\newcommand{\myttlcodetmp}   {\fontspec[Scale=1]{Ubuntu Mono}\selectfont}
+\newcommand{\myttlentmp}   {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+% Limiting the scope of the selected font
+\newcommand{\myttlcode}   [1]{{\myttlcodetmp{#1}}}
+\newcommand{\myttlen}   [1]{{\myttlentmp{#1}}}
+
+%%% Changes the spacing for everything in the document, including footnotes and tables 
 \renewcommand{\baselinestretch}{1.35} 
 
 
@@ -120,7 +146,11 @@
 \makeatother 
 
 
-%%%% Style part, chapter, section, subsection, subsubsection heading and table of contents
+%%% Formatting part, chapter, section, subsection, subsubsection heading and table of contents
+%%% and caption
+% For caption
+\DeclareCaptionFont{captionfont}{\color{iron}\bfseries\fontspec[Script=Myanmar,Scale=0.9]{Pyidaungsu Bold}\selectfont}
+\captionsetup{font=captionfont}
 % For table of contents
 \contentsmargin[1cm]{0cm}
 \titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries\mmpdk}
@@ -138,22 +168,22 @@
 {}
 {\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
 
-% For headings
+% For titles and their name in headers
 \titleformat{\section}[block] 
 {\color{MidnightBlue}\normalfont\large\bfseries\mmpdk }{{\color{MidnightBlue}\large\thesection}}{1em}{}
 
 \titleformat{\subsection}[block] 
-{\color{MidnightBlue}\normalsize \mmpdkbkb}{{\color{MidnightBlue}\normalsize\thesubsection}}{1em}{}
+{\color{MidnightBlue}\normalsize \mmpdk}{{\color{MidnightBlue}\normalsize\thesubsection}}{1em}{}
 
 \titleformat{\subsubsection}[block] 
-{\color{MidnightBlue}\normalsize\mmpdkbkb }{{\color{MidnightBlue}\normalsize\thesubsubsection}}{1em}{}
+{\color{MidnightBlue}\normalsize\mmpdk }{{\color{MidnightBlue}\normalsize\thesubsubsection}}{1em}{}
 
 \titleformat{\chapter}[display] 
-    {\color{MidnightBlue}\normalfont\Huge\bfseries\mmpdkb }{\color{MidnightBlue}{\Huge\mmpdkb\thechapter}}{1ex}
+    {\color{MidnightBlue}\normalfont\Huge\bfseries\mmpdk }{\color{MidnightBlue}{\Huge\mmpdk\thechapter}}{1ex}
     {\filright} 
 
 \titleformat{\part}[display] 
-{\filcenter\LARGE\mmpdkbkb}{{\large\partname\; \thepart}}{1em}{\thispagestyle{empty}}
+{\filcenter\LARGE\mmpdk}{{\large\partname\; \thepart}}{1em}{\thispagestyle{empty}}
 
 %%% Code listing related
 \newfontface\pgcode[Scale=0.9, BoldFont={Ubuntu Mono Bold}]{Ubuntu Mono}
@@ -177,9 +207,8 @@
   \ifodd\value{page}\hbox{}\newpage\fi
 }
 
-\newcommand{\todef}[1]{\bfseries{#1} \xspace}
-\newcommand{\toem}[1]{\bfseries{#1} \xspace}
-
+\newcommand{\todef}[1]{\textbf{#1}}
+\newcommand{\toem}[1]{\textbf{#1}}
 
 \newcommand{\Fig}{ပုံ\xspace}
 \newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\myen{(programming)}}}
@@ -198,11 +227,11 @@
 \newcommand{\enprogrammingLanguage}{{\myen{programming language}}\xspace}
 \newcommand{\encontrolFlowStatement}{{\myen{control flow statement}}\xspace}
 
-\newcommand{\enprog}{{\enprogramming}}
+\newcommand{\enprog}{\enprogramming}
 
 
 
-\title{\mmpdkbkb အခြေခံ ပရိုဂရမ် ရေးနည်း } 
+\title{\mmpdk အခြေခံ ပရိုဂရမ် ရေးနည်း } 
 \author{ပြည်စိုး} 
 \date{၀၅/၀၅/၂၀၂၂}
 
@@ -220,5 +249,7 @@
 \include{ch01}
 \include{ch02}
 \include{ch03}
+
+
 
 \end{document}
