@@ -1,41 +1,160 @@
-\chapter{စက်ရုပ်ကားရဲလ် \myttlcode{for} Programming with Karel the Robot}
+
+\chapter{Programming with Karel the Robot}
+%https://tex.stackexchange.com/questions/10555/hyperref-warning-token-not-allowed-in-a-pdf-string
 \XeTeXlinebreaklocale "my_MM"  %Myanmar line and character breaks
 \XeTeXinterwordspaceshaping=2
 \begin{sloppypar}
-\enprog\ ဆိုတာဘာလဲ။ ဒါကိုဖြေဖို့ စာတွေအများကြီးရေးပြီး ရှင်းပြလို့ရပေမယ့် အများကြီးသိပ်မပြောပဲ လက်တွေ့ \enprogram လေးတွေ စရေးကြည့်ပြီးမှ \mmprogramming ဆိုတာ ဘာလဲ ပြောပြလိုက်ရင် ပိုပြီးနားလည်ရလွယ်တယ်။ ဒါ့ကြောင့် စက်ရုပ်ကားရဲလ်\myen{(Karel the Robot)}ကို အလုပ်တွေ လုပ်ခိုင်းဖို့ \mmprogram လေးတွေ  အရင်ဆုံး ရေးကြည့်ကြမယ်။
 
-စက်ရုပ်ကားရဲလ်က အခြေခံအားဖြင့် \mycode{move, turnLeft, putBeeper, pickBeeper} ဆိုတဲ့ ကွန်မန်း\myen{(command)} လေးခုကို နားလည်တယ်။ \mycode{move} ကွန်မန်းက သူရပ်နေတဲ့ ကွန်နာ\myen{(corner)}ကနေ ရှေ့တည့်တည့် ကပ်ရပ် ကွန်နာဆီကို ရွှေ့ခိုင်းတာ။ \Fig \vref*{fig:name} မှာပြထားတဲ့ ကြက်ခြေခတ်လေးတွေကို ကွန်နာလို့ခေါ်တယ်။ 
 
-\begin{figure}[!b]
-    \centering\caption{ကားရဲလ်၏ {\myttlcode{for}} ကမ္ဘာ}\label{fig:name}
-    \includegraphics[width=4in]{ch01/ch01}
+
+\enprogramming\ ဆိုတာဘာလဲရှင်းပြဖို့ စာတွေအများကြီးရေးနေတာထက် လက်တွေ့ \enprogram လေးတွေ စရေးကြည့်ပြီးမှ \mmprogramming ဆိုတာ ဘာလဲ ပြောပြလိုက်ရင် ပိုပြီးနားလည် သဘောပေါက်လွယ်တယ်။ 
+
+\begin{figure}[h]
+    \caption{ကားရဲလ်နှင့်  သူ့ကမ္ဘာ}\label{fig:meet_karel}
+    \includegraphics[width=4in, left]{ch01/meet_karel.jpg}
 \end{figure}
 
 
-\mycode{turnLeft} ကွန်မန်းကတော့ ဘယ်ဘက်လှည့်ခိုင်းတာ။ ကားရဲမျက်နှာမူရာ အရပ်မျက်နှာ တစ်ခုချင်းစီအတွက် \mycode{turnLeft} ကွန်မန်းပေးလိုက်တဲ့ အခါမှာ ဘယ်အရပ်ကိုလှည့်သွားမလဲ ပုံမှာတွေ့နိုင်တယ်။
 
-ကားရဲလ်ကို \mycode{putBeeper} ကွန်မန်းပေးလိုက်ရင်တော့ ကားရဲလ်က သူရှိနေတဲ့ ကွန်နာမှာ ဘိပါ\myen{(beeper)} လို့ခေါ်တဲ့ အတုံးလေး တစ်ခုချထားလိမ့်မယ်။ ဒီကွန်မန်း မပေးရသေးခင်နဲ့ ပေးပြီးအခြေအနေကို ပုံမှာယှဉ်ပြထားတယ်။ ကွန်မန်းပေးပြီးသွားတဲ့အခါ စိန်တုံးပုံစံ ဘိပါတုံးလေး ရှိနေတာ တွေ့ရမယ်။ 
+\section{ကားရဲလ်နှင့် မိတ်ဆက်ခြင်း}
+ဒါ့ကြောင့် စက်ရုပ်ကားရဲလ်\myen{(Karel the Robot)}ကို သူရောက်နေတဲ့ ကမ္ဘာမှာ အလုပ်တွေ လုပ်ခိုင်းဖို့ \mmprogram လေးတွေ  အရင်ဆုံး ရေးကြည့်ကြမယ်။ \Fig \vref*{fig:meet_karel} မှာ ပြထားတာက ကားရဲလ် ရောက်ရှိနေမယ့် နမူနာ ကမ္ဘာပါ။ ကားရဲလ်ရဲ့ ကမ္ဘာထဲက မီးခိုးရောင် ဆနွင်းမကင်းကွက်ပုံ အရာကို \enbeeper\ လို့ ခေါ်တယ်။ 
 
-\mycode{pickBeeper} ကွန်မန်းက ဘိပါကောက်ခိုင်းတာပါ။ ကားရဲလ်ရောက်နေတဲ့ ကွန်နာမှာ ဘိပါရှိရင် ဒီကွန်မန်းနဲ့ ကောက်ခိုင်းလို့ရတယ်။ ကွန်နာတစ်ခုမှာ ဘိပါတစ်ခုမက ရှိနိုင်တယ်။ တစ်ခုမှ မရှိတာလဲ ဖြစ်နိုင်တယ်။ ပုံမှာဆိုရင် ကွန်နာတစ်ခုမှာပဲ ဘိပါရှိနေပြီး ကျန်တဲ့ ကွန်နာတွေမှာက ဘိပါမရှိပါဘူး။
+ ကားရဲလ်က စကားပြေားပြီး ခိုင်းလို့မရဘူး။ သူနားလည်တဲ့ \encommand တွေကို \mmprogram ရေးပြီးပဲ ခိုင်းလို့ရတယ်။ 
 
-ပရိုဂရမ်းမင်း\myen{(programming)} ဆိုတာဘာလဲ။ ဒါကိုဖြေဖို့ စာတွေအများကြီးရေးပြီး ရှင်းပြလို့ရသလို အများကြီးသိပ်မပြောပဲ လက်တွေ့ \myen{program} လေးတွေစရေးကြည့်ပြီးမှ ပရိုဂရမ်းမင်းဆိုတာ ဘာလဲ ပြောပြလိုက်ရင် ပိုပြီးနားလည်ရလွယ်တယ်။ ဒါ့ကြောင့် စက်ရုပ်ကားရဲလ်\myen{(Karel the Robot)}ကို အလုပ်တွေ လုပ်ခိုင်းဖို့ ပရိုဂရမ်\myen{(program)} လေးတွေ အရင်ဆုံး ရေးကြည့်ကြမယ်။
+\begin{figure}[tbh!]
+    \caption{ကားရဲလ်နှင့်  သူ့ကမ္ဘာ}\label{fig:meet_karel_aft}
+    \includegraphics[width=4in, left]{ch01/meet_karel_aft.jpg}
+\end{figure}
 
-စက်ရုပ်ကားရဲလ်က အခြေခံအားဖြင့် \mycode{move, turnLeft, putBeeper, pickBeeper} ဆိုတဲ့ ကွန်မန်း\myen{(command)} လေးခုကို နားလည်တယ်။ \mycode{move} ကွန်မန်းက သူရပ်နေတဲ့ ကွန်နာ\myen{(corner)}ကနေ ရှေ့တည့်တည့် ကပ်ရပ် ကွန်နာဆီကို ရွှေ့ခိုင်းတာ။ ပုံမှာပြထားတဲ့ ကြက်ခြေခတ်လေးတွေကို ကွန်နာလို့ခေါ်တယ်။ 
 
-\mycode{turnLeft} ကွန်မန်းကတော့ ဘယ်ဘက်လှည့်ခိုင်းတာ။ ကားရဲမျက်နှာမူရာ အရပ်မျက်နှာ တစ်ခုချင်းစီအတွက် \mycode{turnLeft} ကွန်မန်းပေးလိုက်တဲ့ အခါမှာ ဘယ်အရပ်ကိုလှည့်သွားမလဲ ပုံမှာတွေ့နိုင်တယ်။
 
-ကားရဲလ်ကို \mycode{putBeeper} ကွန်မန်းပေးလိုက်ရင်တော့ ကားရဲလ်က သူရှိနေတဲ့ ကွန်နာမှာ ဘိပါ\myen{(beeper)} လို့ခေါ်တဲ့ အတုံးလေး တစ်ခုချထားလိမ့်မယ်။ ဒီကွန်မန်း မပေးရသေးခင်နဲ့ ပေးပြီးအခြေအနေကို ပုံမှာယှဉ်ပြထားတယ်။ ကွန်မန်းပေးပြီးသွားတဲ့အခါ စိန်တုံးပုံစံ ဘိပါတုံးလေး ရှိနေတာ တွေ့ရမယ်။ 
+\section{ကားရဲလ်နားလည်သော \mmcommand လေးခု}
+ကားရဲလ်က အခြေခံအားဖြင့် \mmcommand လေးခုကိုပဲ နားလည်တယ်။ \mycode{move, turnLeft, putBeeper, pickBeeper} \mmcommand တို့ ဖြစ်တယ်။ \mycode{move} ကွန်မန်းက သူရပ်နေတဲ့ \mmcorner ကနေ ရှေ့တည့်တည့် ကပ်ရပ် \mmcorner ကို ရွှေ့ခိုင်းတာ။ \mmcorner ‌တွေကို အပေါင်းသင်္ကေတ လေးတွေနဲ့ ပြထားတယ်။ ပုံထဲမှာ သေးနေတဲ့အတွက် အစက်လေးတွေလို့ ထင်ရတယ်။ 
 
-\mycode{pickBeeper} ကွန်မန်းက ဘိပါကောက်ခိုင်းတာပါ။ ကားရဲလ်ရောက်နေတဲ့ ကွန်နာမှာ ဘိပါရှိရင် ဒီကွန်မန်းနဲ့ ကောက်ခိုင်းလို့ရတယ်။ ကွန်နာတစ်ခုမှာ ဘိပါတစ်ခုမက ရှိနိုင်တယ်။ တစ်ခုမှ မရှိတာလဲ ဖြစ်နိုင်တယ်။ ပုံမှာဆိုရင် ကွန်နာတစ်ခုမှာပဲ ဘိပါရှိနေပြီး ကျန်တဲ့ ကွန်နာတွေမှာက ဘိပါမရှိပါဘူး။ \vref*{fig:name} မှာပြထားတဲ့ ကြက်ခြေခတ်လေးတွေကို ကွန်နာလို့ခေါ်တယ်။ 
+ကားရဲလ်ကို \mycode{putBeeper} ကွန်မန်းပေးလိုက်ရင်တော့ ကားရဲလ်က သူရှိနေတဲ့ ကွန်နာမှာ ဘိပါ\myen{(beeper)} လို့ခေါ်တဲ့ အတုံးလေး တစ်ခုချထားလိမ့်မယ်။ 
 
-ပရိုဂရမ်းမင်း\myen{(programming)} ဆိုတာဘာလဲ။ ဒါကိုဖြေဖို့ စာတွေအများကြီးရေးပြီး ရှင်းပြလို့ရသလို အများကြီးသိပ်မပြောပဲ လက်တွေ့ \myen{program} လေးတွေစရေးကြည့်ပြီးမှ ပရိုဂရမ်းမင်းဆိုတာ ဘာလဲ ပြောပြလိုက်ရင် ပိုပြီးနားလည်ရလွယ်တယ်။ ဒါ့ကြောင့် စက်ရုပ်ကားရဲလ်\myen{(Karel the Robot)}ကို အလုပ်တွေ လုပ်ခိုင်းဖို့ ပရိုဂရမ်\myen{(program)} လေးတွေ အရင်ဆုံး ရေးကြည့်ကြမယ်။
+\mycode{pickBeeper} ကွန်မန်းက ဘိပါကောက်ခိုင်းတာပါ။ ကားရဲလ်ရောက်နေတဲ့ ကွန်နာမှာ ဘိပါရှိရင် ဒီကွန်မန်းနဲ့ ကောက်ခိုင်းလို့ရတယ်။ 
 
-စက်ရုပ်ကားရဲလ်က အခြေခံအားဖြင့် \mycode{move, turnLeft, putBeeper, pickBeeper} ဆိုတဲ့ ကွန်မန်း\myen{(command)} လေးခုကို နားလည်တယ်။ \mycode{move} ကွန်မန်းက သူရပ်နေတဲ့ ကွန်နာ\myen{(corner)}ကနေ ရှေ့တည့်တည့် ကပ်ရပ် ကွန်နာဆီကို ရွှေ့ခိုင်းတာ။ ပုံမှာပြထားတဲ့ ကြက်ခြေခတ်လေးတွေကို ကွန်နာလို့ခေါ်တယ်။ 
+\begin{figure}[tbh!]
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/bef_move.jpg}
+        \caption{ကနဦး အနေအထား}
+    \end{subfigure}
+    \hspace{0.1in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/aft_1st_move.jpg}
+        \caption{\myttlcode{move} \mmcommand လုပ်ဆောင်ပြီး}
+    \end{subfigure}
 
-\mycode{turnLeft} ကွန်မန်းကတော့ ဘယ်ဘက်လှည့်ခိုင်းတာ။ ကားရဲမျက်နှာမူရာ အရပ်မျက်နှာ တစ်ခုချင်းစီအတွက် \mycode{turnLeft} ကွန်မန်းပေးလိုက်တဲ့ အခါမှာ ဘယ်အရပ်ကိုလှည့်သွားမလဲ ပုံမှာတွေ့နိုင်တယ်။
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/aft_2nd_move.jpg}
+        \caption{\myttlcode{move} \mmcommand တစ်ခါထပ်၍ လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \hspace{0.12in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/aft_pick.jpg}
+        \caption{\myttlcode{pickBeeper} \mmcommand လုပ်ဆောင်ပြီး}
+    \end{subfigure}
 
-ကားရဲလ်ကို \mycode{putBeeper} ကွန်မန်းပေးလိုက်ရင်တော့ ကားရဲလ်က သူရှိနေတဲ့ ကွန်နာမှာ ဘိပါ\myen{(beeper)} လို့ခေါ်တဲ့ အတုံးလေး တစ်ခုချထားလိမ့်မယ်။ ဒီကွန်မန်း မပေးရသေးခင်နဲ့ ပေးပြီးအခြေအနေကို ပုံမှာယှဉ်ပြထားတယ်။ ကွန်မန်းပေးပြီးသွားတဲ့အခါ စိန်တုံးပုံစံ ဘိပါတုံးလေး ရှိနေတာ တွေ့ရမယ်။ 
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/aft_3rd_move.jpg}
+        \caption{\myttlcode{move} \mmcommand တစ်ခါထပ်၍ လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \hspace{0.1in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \adjincludegraphics[height=1.18in,trim={0 0 {.44\width} {.55\height}}, clip, left]{ch01/aft_put.jpg}
+        \caption{\myttlcode{putBeeper} \mmcommand လုပ်ဆောင်ပြီး}        
+    \end{subfigure}
 
-\mycode{pickBeeper} ကွန်မန်းက ဘိပါကောက်ခိုင်းတာပါ။ ကားရဲလ်ရောက်နေတဲ့ ကွန်နာမှာ ဘိပါရှိရင် ဒီကွန်မန်းနဲ့ ကောက်ခိုင်းလို့ရတယ်။ ကွန်နာတစ်ခုမှာ ဘိပါတစ်ခုမက ရှိနိုင်တယ်။ တစ်ခုမှ မရှိတာလဲ ဖြစ်နိုင်တယ်။ ပုံမှာဆိုရင် ကွန်နာတစ်ခုမှာပဲ ဘိပါရှိနေပြီး ကျန်တဲ့ ကွန်နာတွေမှာက ဘိပါမရှိပါဘူး။ \Fig\vref*{fig:name} မှာပြထားတဲ့ ကြက်ခြေခတ်လေးတွေကို ကွန်နာလို့ခေါ်တယ်။ 
+    \caption{\myttlcode{move, pickBeeper, putBeeper} \mmcommand အသီးသီး အလုပ်လုပ်ပုံ}
+    \label{fig:bef_and_after_commands}
+\end{figure}
+
+\mycode{turnLeft} ကွန်မန်းကတော့  ဘယ်ဘက်လှည့်ခိုင်းတာ။ မူလအနေအထားကနေ \mycode{turnLeft} ကွန်မန်းပေးလိုက်တဲ့ အခါမှာ မျက်နှာမူရာ အရပ် ပြောင်းသွားပုံကို \Fig \vref*{fig:bef_and_after_turnLeft} တွင်ကြည့်ပါ။ ညာဘက်လှည့်ခိုင်းဖို့ ကားရဲလ်ကိို \mycode{turnRight} \mmcommand နဲ့တော့ ခိုင်းလို့မရဘူး။ သူက \mycode{turnRight}  \mmcommand ကို နားမလည်ပါဘူး။
+
+\begin{figure}[tbh!]
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[scale=0.2, left]{ch01/karel_icon_E.png}
+        \caption{မူလ အနေအထား(အရှေ့ဘက်လှည့်)}    
+    \end{subfigure}
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[scale=0.2, left]{ch01/karel_icon_N.png}
+        \caption{\myttlcode{turnLeft} တစ်ကြိမ်လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[scale=0.2, left]{ch01/karel_icon_W.png}
+        \caption{\myttlcode{turnLeft} တစ်ကြိမ် ထပ်၍လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[scale=0.2, left]{ch01/karel_icon_S.png}
+        \caption{\myttlcode{turnLeft} တစ်ကြိမ် ထပ်၍လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.4\textwidth}
+        \includegraphics[scale=0.2, left]{ch01/karel_icon_E.png}
+        \caption{\myttlcode{turnLeft} နောက်ဆုံးတစ်ကြိမ် လုပ်ဆောင်ပြီး}
+    \end{subfigure}
+    \caption{ကနဦး အရှေ့ဘက် မျက်နှာမူနေရာမှ}
+    \label{fig:bef_and_after_turnLeft}
+\end{figure}
+
+
+
+\section{ပထမဆုံး ကားရဲလ် \mmprogram}
+\enbeeper ကို မူလနေရာကနေ \Fig \vref*{fig:meet_karel_aft} မှာပြထားတဲ့ နေရာကို ရွှေ့ခိုင်းရမှာပါ။ \mmcommand တွေကို ဘယ်လို အစဉ်အတိုင်းပေးရမလဲ။ \mmbeeper ရှိတဲ့နေရာကိုသွား၊ \mmbeeper ကောင်ခိုင်း။ \mycode{move, move, move, pickBeeper}။ ဒီ\mmcommand လေးခု ပြီးသွားရင် ရှေ့မှာနံရံရှိနေတယ်။ ဆက်သွားလို့မရတော့ဘူး။ မြောက်ဘက်ကို သွားခိုင်းဖို့ ဘယ်ဘက်လှည့်ခိုင်းရမယ် \mycode{turnLeft}။ နှစ်ကြိမ်ထပ်ပြီးရွှေ့ခိုင်းရမယ် \mycode{move, move}။ အရှေ့ဘက် ပြန်လှည့်ခိုင်းဖို့ ညာဘက်လှည့်ခိုင်းရမယ်။ ဒါပေမယ့် \mycode{turnRight} \mmcommand မရှိဘူး။ \mycode{turnLeft} သုံးခါလုပ်ခိုင်းလိုက်ရင်လည်း အရှေ့ဘက်လှည့်သွားမှာပဲ။ တစ်ခါထပ်ပြီး \mycode{move} ခိုင်းလိုက်ရင် \mmbeeper ကိုထားခိုင်းချင်တဲ့နေရာ ရောက်ပြီ။ \mycode{putBeeper}။ 
+
+အစဉ်အတိုင်း ပေးရမယ့် \mmcommand တွေက \mycode{move, move, move, pickBeeper, turnLeft, move, move, turnLeft, turnLeft, turnLeft, move, putBeeper, move} ဖြစ်မယ်။  \mmprogram 
+
+\mmprogram ရေးဖို့အတွက် \encomputer\ နားလည်တဲ့ ဘာသာစကား တစ်မျိုးမျိုးကို အသုံးပြုပြီး ရေးရတယ်။ \mmcomputer\ နားလည်တဲ့၊ \mmcomputer ပရိုဂရမ်ရေးဖို့ အသုံးပြုတဲ့ ဘာသာစကားကို \enPL\ လို့ ခေါ်တယ်။ 
+
+ကားရဲလ်ကို \enJPL ကို သုံးပြီး \mmprogram ရေးရမှာပါ။
+
+\begin{lstlisting}[language = Java, float]
+    public class MeetKarel extends stanford.karel.Karel{
+            
+    }
+\end{lstlisting}
+
+\section{Karel's World}
+\Fig \vref*{fig:meet_karel} 
+အနောက်မှအရှေ့ \mmcorner တွေ တလျှောက်က \enstreet တွေ ဖြစ်ပြီး တောင်မှမြောက် \mmcorner တွေ တလျှောက်က \enavenue တွေ ဖြစ်တယ်။ 
+
+\mmcorner တွေက \mmavenue နဲ့ \mmstreet တွေဆုံတဲ့ လမ်းဆုံတွေ ဖြစ်တယ်။ \mmcorner တစ်ခုကို ရည်ညွှန်းဖို့ \mmavenue နဲ့ \mmstreet နံပါတ်‌တွေကို အသုံးပြုမယ်။ ကားရဲလ်က (၁,၁) \mmcorner၊ \mmbeeper က (၃,၁) \mmcorner မှာရှိနေတယ်။ ပထမ‌‌နံပါတ်က \mmavenue ၊ ဒုတိယက \mmstreet နံပါတ်ပါ။ “\mmbeeper က (၃,၁) \mmcorner မှာရှိတယ်”  လို့ရေးရင် \mmbeeper က နံပါတ် ၃ \mmavenue\ နဲ့ ၁ \mmstreet ဆုံတဲ့ \mmcorner မှာ ရှိနေတယ်လို့ ဆိုလိုတာ။
+
+
+
+\section{ကားရဲလ် ပရိုဂရမ်ကို ခွဲခြမ်းစိတ်ဖြာကြည့်ခြင်း}
+
+\begin{lstlisting}[language = Java, float=ht]
+    class ClassName {
+            
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[language = Java, float]
+    public class MeetKarel{
+            
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[language = Java, float=hb]
+    public class MeetKarel extends stanford.karel.Karel{
+            
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[language = Java, float]
+    import stanford.karel.Karel;
+    public class MeetKarel extends {
+            
+    }
+\end{lstlisting}
+
+\begin{lstlisting}[language = Java, float]
+    public class MeetKarel extends stanford.karel.Karel{
+            public void run(){
+
+            }            
+    }
+\end{lstlisting}
 
 \end{sloppypar}

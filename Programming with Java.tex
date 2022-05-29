@@ -11,11 +11,14 @@
                 bottom=1.25in,
                 footskip=0.6in,
                 heightrounded]{geometry}
+ 
+\usepackage[export]{adjustbox}
                 
 \usepackage[dvipsnames]{xcolor}
 \usepackage{varioref}
 \usepackage{xspace}
 \usepackage{fancyhdr}
+\usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{blindtext}
 \usepackage{fontspec}
@@ -24,6 +27,16 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage[unicode=true]{hyperref}
+\usepackage{afterpage}
+
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+\pdfstringdefDisableCommands{%
+  \def\\{}%
+  \def\texttt#1{<#1>}%
+}
+
+%\hypersetup{colorlinks = false,linkcolor = blue,anchorcolor =red,citecolor = blue,filecolor = red,urlcolor = red, pdfauthor=author}
 
 
 %%%  Replace english with Myanmar, tweaking varioref package 
@@ -70,7 +83,8 @@
 %%% Font related tweaks
 \defaultfontfeatures{Script=Myanmar,Mapping=tex-text} 
 \fontspec[Script=Myanmar, BoldFont={Padauk Book Bold}, ]{Padauk Book}
-\setmainfont[UprightFont={Padauk Book},
+\setmainfont[Color=tungsten,
+                UprightFont={Padauk Book},
                 BoldFont={Padauk Book Bold},
                 ItalicFont={Padauk Book},
                 BoldItalicFont={Padauk Book Bold},
@@ -88,30 +102,28 @@
 %\DeclareTextFontCommand{\myen}{\myparaen}
 %\DeclareTextFontCommand{\txtmycode}{\mycode}
 
-\newcommand{\mmem}[1]{\textbf{\color{blue}#1}}
-
-\newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=1]{Myanmar Tagu}\selectfont}
+\newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Tagu}]{Myanmar Tagu}\selectfont}
 
 %%% Switching to type writer font and sans serif font in paragraph
 % Make sure to set the color to match the main font color
-\newcommand{\mycodetmp}   {\fontspec[Scale=1]{Ubuntu Mono}\selectfont}
-\newcommand{\myentmp}     {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+\newcommand{\mycodetmp}   {\fontspec[Color=lead, Scale=1, Script=Latin]{Ubuntu Mono}\selectfont}
+\newcommand{\myentmp}     {\fontspec[Color=tungsten, Scale=1,Scale=MatchLowercase, Script=Latin]{Verdana}\selectfont}
 % Limiting the scope of the selected font
 \newcommand{\mycode}   [1]{{\mycodetmp{#1}}}
 \newcommand{\myen}   [1]{{\myentmp{#1}}}
 
 %%% With \XeTeXinterwordspaceshaping=2, \color or \textcolor doesn't work 
 % This is a workaround to color text 
-\newcommand{\myemcodetmp}   {\fontspec[Scale=1, Color=red]{Ubuntu Mono}\selectfont}
-\newcommand{\myementmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=red]{Verdana}\selectfont}
+\newcommand{\myemcodetmp}   {\fontspec[Scale=1, Color=red, Script=Latin]{Ubuntu Mono}\selectfont}
+\newcommand{\myementmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=red, Script=Latin]{Verdana}\selectfont}
 \newcommand{\myemmmtmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=red]{Padauk Book}\selectfont}
 % Limiting the scope of the selected font
 \newcommand{\myemcode}   [1]{{\myemcodetmp{#1}}}
 \newcommand{\myemen}   [1]{{\myementmp{#1}}}
 \newcommand{\myemmm}   [1]{{\myemmmtmp{#1}}}
 
-\newcommand{\mydefcodetmp}   {\fontspec[Scale=1, Color=MidnightBlue]{Ubuntu Mono}\selectfont}
-\newcommand{\mydefentmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=MidnightBlue]{Verdana}\selectfont}
+\newcommand{\mydefcodetmp}   {\fontspec[Scale=1, Color=MidnightBlue, Script=Latin]{Ubuntu Mono}\selectfont}
+\newcommand{\mydefentmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=MidnightBlue, Script=Latin]{Verdana}\selectfont}
 \newcommand{\mydefmmtmp}     {\fontspec[Scale=1,Scale=MatchLowercase, Color=MidnightBlue]{Padauk Book}\selectfont}
 % Limiting the scope of the selected font
 \newcommand{\mydefcode}   [1]{{\mydefcodetmp{#1}}}
@@ -122,8 +134,8 @@
 %%% Switching to type writer font and sans serif font in titles and caption
 % Make sure not to set the color. Color should be applied later at the respective
 % formatting applied to titles, caption, headers etc.,
-\newcommand{\myttlcodetmp}   {\fontspec[Scale=1]{Ubuntu Mono}\selectfont}
-\newcommand{\myttlentmp}   {\fontspec[Scale=1,Scale=MatchLowercase]{Verdana}\selectfont}
+\newcommand{\myttlcodetmp}   {\fontspec[Scale=1, Script=Latin]{Ubuntu Mono}\selectfont}
+\newcommand{\myttlentmp}   {\fontspec[Scale=1,Scale=MatchLowercase, Script=Latin]{Verdana}\selectfont}
 % Limiting the scope of the selected font
 \newcommand{\myttlcode}   [1]{{\myttlcodetmp{#1}}}
 \newcommand{\myttlen}   [1]{{\myttlentmp{#1}}}
@@ -149,8 +161,8 @@
 %%% Formatting part, chapter, section, subsection, subsubsection heading and table of contents
 %%% and caption
 % For caption
-\DeclareCaptionFont{captionfont}{\color{iron}\bfseries\fontspec[Script=Myanmar,Scale=0.9]{Pyidaungsu Bold}\selectfont}
-\captionsetup{font=captionfont}
+\DeclareCaptionFont{captionfont}{\color{iron}\bfseries\fontspec[Script=Myanmar,Scale=0.9, BoldFont={Pyidaungsu Bold}]{Pyidaungsu Bold}\selectfont}
+\captionsetup{singlelinecheck=false,justification=raggedright,font=captionfont}
 % For table of contents
 \contentsmargin[1cm]{0cm}
 \titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries\mmpdk}
@@ -186,9 +198,14 @@
 {\filcenter\LARGE\mmpdk}{{\large\partname\; \thepart}}{1em}{\thispagestyle{empty}}
 
 %%% Code listing related
-\newfontface\pgcode[Scale=0.9, BoldFont={Ubuntu Mono Bold}]{Ubuntu Mono}
+\newfontface\pgcode[Scale=1, BoldFont={Ubuntu Mono Bold}, Script=Latin]{Ubuntu Mono}
 \lstset{
   language     = Java,
+  backgroundcolor=\color{gray!10!white},
+  %frame=L,
+  xleftmargin=0pt,
+  breaklines=false,
+  tabsize=8,
   basicstyle   = \pgcode,
   commentstyle = \color{gray},
   keywordstyle = \color{darkgray}\textbf,
@@ -227,13 +244,33 @@
 \newcommand{\enprogrammingLanguage}{{\myen{programming language}}\xspace}
 \newcommand{\encontrolFlowStatement}{{\myen{control flow statement}}\xspace}
 
-\newcommand{\enprog}{\enprogramming}
+\newcommand{\enavenue}{ရိပ်သာလမ်း{\myen{(avenue)}}}
+\newcommand{\mmavenue}{ရိပ်သာလမ်း}
+\newcommand{\enstreet}{လမ်း{\myen{(street)}}}
+\newcommand{\mmstreet}{လမ်း}
+
+\newcommand{\enrun}{{\myen{run}}}
+\newcommand{\mmrun}{\myen{run}}
+
+\newcommand{\enJPL}{{\myen{(Java Programming Language)}}}
+\newcommand{\mmJPL}{{\myen{(Java Programming Language)}}}
+
+\newcommand{\enPL}{“ပရိုဂရမ်ရေးရန် အသုံးပြုသည့် ဘာသာစကား”{\myen{(programming language)}}}
+\newcommand{\mmPL}{{\myen{programming language}}}
+
+\newcommand{\encomputer}{ကွန်ပျူတာ{\myen{(computer)}}}
+\newcommand{\mmcomputer}{ကွန်ပျူတာ}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
 
 
-
-\title{\mmpdk အခြေခံ ပရိုဂရမ် ရေးနည်း } 
-\author{ပြည်စိုး} 
-\date{၀၅/၀၅/၂၀၂၂}
+\title{\Huge\mmpdk Programming with Java } 
+\author{Pyi Soe} 
+\date{05-05-2022}
 
 \begin{document}
 
@@ -246,6 +283,8 @@
 \cleardoublepage
 
 \mainmatter
+% To test and verify macros and declarations have the desired effect
+\include{ch00_testing}
 \include{ch01}
 \include{ch02}
 \include{ch03}
