@@ -1,5 +1,5 @@
 
-\chapter{Programming with Karel the Robot}
+\chapter{\myenchttl{Programming with Karel the Robot}}
 %https://tex.stackexchange.com/questions/10555/hyperref-warning-token-not-allowed-in-a-pdf-string
 \XeTeXlinebreaklocale "my_MM"  %Myanmar line and character breaks
 \XeTeXinterwordspaceshaping=2
@@ -10,23 +10,19 @@
 \enprogramming\ ဆိုတာဘာလဲရှင်းပြဖို့ စာတွေအများကြီးရေးနေတာထက် လက်တွေ့ \enprogram လေးတွေ စရေးကြည့်ပြီးမှ \mmprogramming ဆိုတာ ဘာလဲ ပြောပြလိုက်ရင် ပိုပြီးနားလည် သဘောပေါက်လွယ်တယ်။ 
 
 \begin{figure}[h]
-    \caption{ကားရဲလ်နှင့်  သူ့ကမ္ဘာ}\label{fig:meet_karel}
+    \caption{ကားရဲလ်နှင့်  ကားရဲလ်၏ကမ္ဘာ}\label{fig:meet_karel}
     \includegraphics[width=4in, left]{ch01/meet_karel.jpg}
 \end{figure}
 
-
+\begin{figure}[tbh!]
+    \caption{\mmbeeper နေရာရွှေ့ပြီး}\label{fig:meet_karel_aft}
+    \includegraphics[width=4in, left]{ch01/meet_karel_aft.jpg}
+\end{figure}
 
 \section{ကားရဲလ်နှင့် မိတ်ဆက်ခြင်း}
 ဒါ့ကြောင့် စက်ရုပ်ကားရဲလ်\myen{(Karel the Robot)}ကို သူရောက်နေတဲ့ ကမ္ဘာမှာ အလုပ်တွေ လုပ်ခိုင်းဖို့ \mmprogram လေးတွေ  အရင်ဆုံး ရေးကြည့်ကြမယ်။ \Fig \vref*{fig:meet_karel} မှာ ပြထားတာက ကားရဲလ် ရောက်ရှိနေမယ့် နမူနာ ကမ္ဘာပါ။ ကားရဲလ်ရဲ့ ကမ္ဘာထဲက မီးခိုးရောင် ဆနွင်းမကင်းကွက်ပုံ အရာကို \enbeeper\ လို့ ခေါ်တယ်။ 
 
- ကားရဲလ်က စကားပြေားပြီး ခိုင်းလို့မရဘူး။ သူနားလည်တဲ့ \encommand တွေကို \mmprogram ရေးပြီးပဲ ခိုင်းလို့ရတယ်။ 
-
-\begin{figure}[tbh!]
-    \caption{ကားရဲလ်နှင့်  သူ့ကမ္ဘာ}\label{fig:meet_karel_aft}
-    \includegraphics[width=4in, left]{ch01/meet_karel_aft.jpg}
-\end{figure}
-
-
+ ကားရဲလ်က စကားပြောပြီး ခိုင်းလို့မရဘူး။ သူနားလည်တဲ့ \encommand တွေကို \mmprogram ရေးပြီးပဲ ခိုင်းလို့ရတယ်။ 
 
 \section{ကားရဲလ်နားလည်သော \mmcommand လေးခု}
 ကားရဲလ်က အခြေခံအားဖြင့် \mmcommand လေးခုကိုပဲ နားလည်တယ်။ \mycode{move, turnLeft, putBeeper, pickBeeper} \mmcommand တို့ ဖြစ်တယ်။ \mycode{move} ကွန်မန်းက သူရပ်နေတဲ့ \mmcorner ကနေ ရှေ့တည့်တည့် ကပ်ရပ် \mmcorner ကို ရွှေ့ခိုင်းတာ။ \mmcorner ‌တွေကို အပေါင်းသင်္ကေတ လေးတွေနဲ့ ပြထားတယ်။ ပုံထဲမှာ သေးနေတဲ့အတွက် အစက်လေးတွေလို့ ထင်ရတယ်။ 
@@ -97,22 +93,49 @@
     \label{fig:bef_and_after_turnLeft}
 \end{figure}
 
+\section{\mymmchsec{}{ပထမဆုံး ကားရဲလ်} \mmprogram}
+\enbeeper ကို မူလနေရာကနေ \Fig \vref*{fig:meet_karel_aft} မှာပြထားတဲ့ နေရာကို ရွှေ့ခိုင်းရမှာပါ။ \mmcommand တွေကို ဘယ်လို အစဉ်အတိုင်းပေးရမလဲ။ \mmbeeper ရှိတဲ့နေရာကိုသွားပြီး \mmbeeper ကောင်ခိုင်းဖို့က \mycode{move, move, move, pickBeeper} \mmcommand ပေးမယ်။ ပြီးတဲ့အခါ ရှေ့မှာနံရံရှိနေတယ်။ ဆက်သွားလို့မရတော့ဘူး။ မြောက်ဘက်ကို သွားခိုင်းဖို့ \mycode{turnLeft}။ နှစ်ကြိမ်ထပ်ပြီးရွှေ့ခိုင်းရမယ်ဆိုတော့ \mycode{move, move}။ အရှေ့ဘက် ပြန်လှည့်ခိုင်းဖို့ ညာဘက်လှည့်ခိုင်းရမယ်။ ဒါပေမယ့် \mycode{turnRight} \mmcommand မရှိဘူး။ \mycode{turnLeft} သုံးခါလုပ်ခိုင်းလိုက်ရင်လည်း အရှေ့ဘက်လှည့်သွားမှာပဲ။ တစ်ခါထပ်ပြီး \mycode{move} ခိုင်းလိုက်ရင် \mmbeeper ကိုထားခိုင်းချင်တဲ့နေရာ ရောက်ပြီ။ \mycode{putBeeper} နဲ့ \mmbeeper ချထားခိုင်းလိုက်မယ်။ \mmbeeper ကိုမြင်သာအောင် \mycode{move} တစ်ခါ ထပ်လုပ်ခိုင်းလိုက်မယ်။
 
-
-\section{ပထမဆုံး ကားရဲလ် \mmprogram}
-\enbeeper ကို မူလနေရာကနေ \Fig \vref*{fig:meet_karel_aft} မှာပြထားတဲ့ နေရာကို ရွှေ့ခိုင်းရမှာပါ။ \mmcommand တွေကို ဘယ်လို အစဉ်အတိုင်းပေးရမလဲ။ \mmbeeper ရှိတဲ့နေရာကိုသွား၊ \mmbeeper ကောင်ခိုင်း။ \mycode{move, move, move, pickBeeper}။ ဒီ\mmcommand လေးခု ပြီးသွားရင် ရှေ့မှာနံရံရှိနေတယ်။ ဆက်သွားလို့မရတော့ဘူး။ မြောက်ဘက်ကို သွားခိုင်းဖို့ ဘယ်ဘက်လှည့်ခိုင်းရမယ် \mycode{turnLeft}။ နှစ်ကြိမ်ထပ်ပြီးရွှေ့ခိုင်းရမယ် \mycode{move, move}။ အရှေ့ဘက် ပြန်လှည့်ခိုင်းဖို့ ညာဘက်လှည့်ခိုင်းရမယ်။ ဒါပေမယ့် \mycode{turnRight} \mmcommand မရှိဘူး။ \mycode{turnLeft} သုံးခါလုပ်ခိုင်းလိုက်ရင်လည်း အရှေ့ဘက်လှည့်သွားမှာပဲ။ တစ်ခါထပ်ပြီး \mycode{move} ခိုင်းလိုက်ရင် \mmbeeper ကိုထားခိုင်းချင်တဲ့နေရာ ရောက်ပြီ။ \mycode{putBeeper}။ 
-
-အစဉ်အတိုင်း ပေးရမယ့် \mmcommand တွေက \mycode{move, move, move, pickBeeper, turnLeft, move, move, turnLeft, turnLeft, turnLeft, move, putBeeper, move} ဖြစ်မယ်။  \mmprogram 
+အစဉ်အတိုင်း ပေးရမယ့် \mmcommand တွေက \mycode{move, move, move, pickBeeper, turnLeft, move, move, turnLeft, turnLeft, turnLeft, move, putBeeper, move} ဖြစ်မယ်။ ဒီအစီအစဉ်အတိုင်း \mmcommand တွေကို \mmprogram ရေးပေးရမယ်။ \enJPL ကို အသုံးပြုပြီး ရေးရမှာပါ။ 
 
 \mmprogram ရေးဖို့အတွက် \encomputer\ နားလည်တဲ့ ဘာသာစကား တစ်မျိုးမျိုးကို အသုံးပြုပြီး ရေးရတယ်။ \mmcomputer\ နားလည်တဲ့၊ \mmcomputer ပရိုဂရမ်ရေးဖို့ အသုံးပြုတဲ့ ဘာသာစကားကို \enPL\ လို့ ခေါ်တယ်။ 
 
-ကားရဲလ်ကို \enJPL ကို သုံးပြီး \mmprogram ရေးရမှာပါ။
+မြန်မာ၊ အင်္ဂလိပ် စသည်ဖြင့် လူတွေရဲ့ ဘာသာစကားတွေမှာ သဒ္ဒါရှိသလိုပဲ \mmPL တွေမှာလည်း သဒ္ဒါရှိတယ်။ \mmprogram ရေးတဲ့အခါ အသုံးပြုတဲ့ \mmPL ရဲ့ ရေးပုံရေးနည်း၊ စည်းမျဉ်းစည်းကမ်း သတ်မှတ်ချက်တွေကို လိုက်နာဖို့လိုတယ်။ \mmPL ရဲ့ သဒ္ဒါကို \ensyntax\ လို့ ခေါ်တယ်။
 
-\begin{lstlisting}[language = Java, float]
+ဒီအခန်းအတွက်က \mmsyntax အသေးစိတ် နားလည်ဖို့ မလိုသေးဘူး။ \enJPL ရဲ့ လိုအပ်ချက်အရ ပုံစံချပေးထားတဲ့ ကားရဲလ် \mmprogram\ \entemplate ကိုအသုံးပြုပြီး \mmcommand တွေကို \entemplate ထဲမှာပဲဖြည့်ရေးမယ်။ \entemplate က အခုလိုပုံစံပါ။
+
+\begin{lstcodesimple}[float, caption=ကားရဲလ် ပရိုဂရမ် template]
+public class ClassName extends stanford.karel.Karel{ 
+        public void run(){
+                //Karel commands
+        }        
+}
+\end{lstcodesimple}
+
+
+
+
+\section{IntelliJ}
+\mmprogram\ ‌ရေးဖို့ \enintellij \enIDE ကို ဖွင့်။
+
+
+\subsection{\myttlcode{class} သတ်မှတ်ခြင်း}
+\mycode{class} တစ်ခုသတ်မှတ်ဖို့အတွက် 
+
+\begin{lstcodesimple}[caption=\myttlcode{class} သတ်မှတ်သည့် ဆင်းတက်စ်]
     public class MeetKarel extends stanford.karel.Karel{
             
     }
-\end{lstlisting}
+\end{lstcodesimple}
+
+\subsection{\myttlcode{class} သတ်မှတ်ခြင်း}
+\mycode{class} တစ်ခုသတ်မှတ်ဖို့အတွက် 
+
+\begin{lstcodesimple}[caption=\myttlcode{class} သတ်မှတ်သည့် ဆင်းတက်စ်]
+    public class MeetKarel extends stanford.karel.Karel{
+            
+    }
+\end{lstcodesimple}
 
 \section{Karel's World}
 \Fig \vref*{fig:meet_karel} 
@@ -124,37 +147,37 @@
 
 \section{ကားရဲလ် ပရိုဂရမ်ကို ခွဲခြမ်းစိတ်ဖြာကြည့်ခြင်း}
 
-\begin{lstlisting}[language = Java, float=ht]
+\begin{lstcodesimple}[language = Java, float=ht]
     class ClassName {
             
     }
-\end{lstlisting}
+\end{lstcodesimple}
 
-\begin{lstlisting}[language = Java, float]
+\begin{lstcodesimple}[language = Java, float]
     public class MeetKarel{
             
     }
-\end{lstlisting}
+\end{lstcodesimple}
 
-\begin{lstlisting}[language = Java, float=hb]
+\begin{lstcodesimple}[language = Java, float=hb]
     public class MeetKarel extends stanford.karel.Karel{
             
     }
-\end{lstlisting}
+\end{lstcodesimple}
 
-\begin{lstlisting}[language = Java, float]
+\begin{lstcodesimple}[language = Java, float]
     import stanford.karel.Karel;
     public class MeetKarel extends {
             
     }
-\end{lstlisting}
+\end{lstcodesimple}
 
-\begin{lstlisting}[language = Java, float]
+\begin{lstcodesimple}[language = Java, float]
     public class MeetKarel extends stanford.karel.Karel{
             public void run(){
 
             }            
     }
-\end{lstlisting}
+\end{lstcodesimple}
 
 \end{sloppypar}

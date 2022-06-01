@@ -1,0 +1,32 @@
+\documentclass[10pt]{article}
+
+\usepackage[a4paper, showframe]{geometry}
+\usepackage{fontspec}
+\usepackage[table]{xcolor}
+\usepackage{listings}
+
+\definecolor{mygray}{rgb}{0.9,0.9,0.9}
+
+\lstset{
+  language=c,
+  backgroundcolor=\color{mygray},
+  frame=single,
+  framerule=0pt,
+  framextopmargin=3ex,
+  framexbottommargin=3ex,
+  framexleftmargin=1em,
+  xleftmargin={\dimexpr 1em+3pt},
+  linewidth={\dimexpr \linewidth-3pt}
+}
+
+\begin{document}
+\section{Some code}
+ 
+Lorem Ipsum:
+
+\begin{lstlisting}
+int main(int argc, char * argv[]) {
+    printf("hello, world!\n");
+}
+\end{lstlisting}
+\end{document}

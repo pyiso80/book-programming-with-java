@@ -1,0 +1,38 @@
+%https://tex.stackexchange.com/questions/10141/how-to-prevent-lstlisting-from-splitting-code-between-pages
+\documentclass[a4paper]{article}
+\usepackage{listings}
+\usepackage{lipsum}
+
+\lstnewenvironment{code}[1][]%
+  {\noindent\minipage{\linewidth}\medskip 
+   \lstset{basicstyle=\ttfamily\footnotesize,frame=single,#1}}
+  {\endminipage}
+
+\begin{document}
+
+\lipsum[1-4] % some dummy text to get to the bottom of the page
+
+\begin{code}[caption={This is my code. There are many like it, but this one is mine.},
+         language=Python]
+def jacobian(function, variablelist):
+    """
+    Calculates symbolically the Jacobian of the vector with respect to 
+    the provided variables. Returns a square matrix
+    """
+    n=len(variablelist)
+    J=np.asmatrix(np.zeros((n,n)),dtype=sy.Symbol)
+
+    for i in range(n):
+        for k in range(n):
+            J[i,k]=function[i,0].diff(variablelist[k])
+    return J
+
+def vector(*arglist):
+    """
+    A shorthand for defining a symbolic column vector. Arguments are 
+    supplied as a normal comma-separated list.
+    """
+    return np.asmatrix(np.array(arglist), dtype=sy.Symbol).transpose()
+\end{code}
+
+\end{document}

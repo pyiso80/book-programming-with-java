@@ -29,6 +29,8 @@
 \usepackage[unicode=true]{hyperref}
 \usepackage{afterpage}
 
+
+%%% Experimental to solve error regarding pdf render and hyperlink error
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{naturalnames}{hyperref}
 \pdfstringdefDisableCommands{%
@@ -62,13 +64,31 @@
 \definecolor{tungsten}{HTML}{424242}
 \definecolor{lead}{HTML}{212121}
 \definecolor{steelblue}{HTML}{36648B}
+\definecolor{steelblue}{HTML}{36648B}
+\definecolor{lightsteelblue}{HTML}{A2B5CD}
+\definecolor{skyblue}{HTML}{607B8B}
+\definecolor{lstcptcolor}{HTML}{5E95C1}
+
+\newcommand{\hdrcolor}{skyblue}
+\newcommand{\cptcolor}{steel}
+\newcommand{\lstcapboxcolor}{lstcptcolor}
+\newcommand{\lstcapcolor}{white}
 
 
-%%% Page style related stuff
+
+
+
+
+
+
+%%% Header, footer, page number etc., style
 \fancyhf{}
-\fancyhead[LE]{\color{steelblue}\bfseries\mmpdk\nouppercase{\leftmark}}
-\fancyhead[RO]{\color{steelblue}\bfseries\mmpdk\nouppercase{\rightmark}}
-\fancyfoot[LE,RO]{\thepage}
+\renewcommand{\chaptermark}[1]{ \markboth{\mymmchhdrnumfnt\thechapter.\ #1}{}}
+%\renewcommand{\chaptermark}[1]{ \markboth{\thechapter.\ \chaptername.\ #1}{}}
+\renewcommand{\sectionmark}[1]{ \markright{\mymmsechdrnumfnt\thesection\ #1}{}}
+\fancyhead[LO]{\color{\hdrcolor}\bfseries\mymmhdr\nouppercase{\leftmark}}
+\fancyhead[RE]{\color{\hdrcolor}\bfseries\mymmhdr\nouppercase{\rightmark}}
+\fancyfoot[LO,RE]{\thepage}
 \pagestyle{fancy}
 \setlength{\headsep}{15pt}
 \setlength{\headheight}{30pt}% ...at least 51.60004pt
@@ -102,7 +122,141 @@
 %\DeclareTextFontCommand{\myen}{\myparaen}
 %\DeclareTextFontCommand{\txtmycode}{\mycode}
 
-\newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Tagu}]{Myanmar Tagu}\selectfont}
+%%%=================================================================================================
+%%% CHAPTER AND SECTION RELATED FORMATTING
+\newcommand{\mymmchttlfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\myenchttlfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
+\newcommand{\mymmchttlnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\mymmsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmpartttlfnt}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myenpartttlfnt}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmpartttlnumfnt}       {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmchhdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsechdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+
+\newcommand{\mymmhdr}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+
+\newcommand{\mycodegeneric}       {\fontspec[Script=Latin,Scale=1, BoldFont={Ubuntu Mono Bold}]{Ubuntu Mono}\selectfont}
+
+\newcommand{\myenchttl}   [1]{{\myenchttlfnt{#1}}}
+\newcommand{\myensecttl}   [1]{{\myensecttlfnt{#1}}}
+\newcommand{\myensubsecttl}   [1]{{\myensubsecttlfnt{#1}}}
+\newcommand{\myensubsubsecttl}   [1]{{\myensubsubsecttlfnt{#1}}}
+\newcommand{\myenpartttl}   [1]{{\myenpartttlfnt{#1}}}
+
+\newcommand{\mycodechttl}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\mycodesecttl}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\mycodesubsecttl}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\mycodesubsubsecttl}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\mycodepartttl}   [1]{{\mycodegeneric{#1}}}
+
+\titleformat{\chapter}[display] 
+    {\color{MidnightBlue}\Huge\bfseries\mymmchttlfnt }{\color{lightsteelblue}{\Huge\mymmchttlnumfnt\thechapter}}{1ex}
+    {\filright} 
+\titleformat{\section}[block] 
+    {\color{MidnightBlue}\large\bfseries\mymmsecttlfnt }{{\color{MidnightBlue}\large\bfseries\mymmsecttlnumfnt\thesection}}{1em}{}
+\titleformat{\subsection}[block] 
+    {\color{MidnightBlue}\large\bfseries\mymmsubsecttlfnt }{{\color{MidnightBlue}\large\bfseries\mymmsubsecttlnumfnt\thesubsection}}{1em}{}
+\titleformat{\subsubsection}[block] 
+    {\color{MidnightBlue}\large\bfseries\mymmsubsubsecttlfnt }{{\color{MidnightBlue}\large\bfseries\mymmsubsubsecttlnumfnt\thesubsubsection}}{1em}{}
+\titleformat{\part}[display] 
+    {\filcenter\LARGE\mymmpartttlfnt}{{\large\partname\; \mymmpartttlnumfnt\thepart}}{1em}{\thispagestyle{empty}}
+
+%%% Figure and listing's caption related logical formatting
+\newcommand{\mymmfigcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\myenfigcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
+\newcommand{\mymmfigcptnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmlstcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\myenlstcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
+\newcommand{\mymmlstcptnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+
+\newcommand{\myenfigcpt}   [1]{{\myenfigcptfnt{#1}}}
+\newcommand{\mycodefigcpt}   [1]{{\myenfigcptfnt{#1}}}
+\newcommand{\myenlstcpt}   [1]{{\myenlstcptfnt{#1}}}
+\newcommand{\mycodelstcpt}   [1]{{\myenlstcptfnt{#1}}} 
+%%%=================================================================================================
+%%% TOC, FIGURE, LISTING CAPTIONS
+\renewcommand{\thesubfigure}{\alph{subfigure}}
+\DeclareCaptionFont{captionfont}{\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Padauk Bold}, Color=\cptcolor]{Padauk}\selectfont}
+\captionsetup[figure]{singlelinecheck=false,justification=raggedright,font={captionfont, bf, small,sc,onehalfspacing,color=\cptcolor}}
+\DeclareCaptionLabelFormat{closing}{#2)}
+\captionsetup[subfigure]{labelformat=closing, labelsep=space}
+
+\DeclareCaptionFont{lstcptfullfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+\DeclareCaptionFont{lstcptlblfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+\DeclareCaptionFont{lstcpttxtfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+
+\DeclareCaptionLabelFormat{custom}
+{%
+      #1 \textbf{#2}  %to get "Figure (1)", "Figure [1]", etc
+}
+% Separator style
+\DeclareCaptionLabelSeparator{custom}{-- } % to get "Figure (1):", "Figure(1) - Some caption" etc
+% Caption format    
+\DeclareCaptionFormat{custom}
+{%
+    #1#2\small #3
+}
+\captionsetup
+{
+    format=custom,%
+    labelformat=custom,%
+    labelsep=custom
+}
+
+\DeclareCaptionLabelFormat{lstcptlblfmt}
+{%
+      #1 \textbf{#2}  %to get "Figure (1)", "Figure [1]", etc
+}
+% Separator style
+\DeclareCaptionLabelSeparator{lstcptsep}{-- } % to get "Figure (1):", "Figure(1) - Some caption" etc
+% Caption format    
+\DeclareCaptionFormat{lstcptfullfmt}
+{%
+    %#1#2\small #3
+    \colorbox{\lstcapboxcolor}{\parbox{\dimexpr\textwidth-2\fboxsep\relax}{#1#2#3}}
+}
+\captionsetup[lstlisting]
+{
+    format=lstcptfullfmt,%
+    labelfont={lstcptlblfnt,bf, normalsize}, % affect label num and sep
+    textfont={lstcpttxtfnt,bf, normalsize},  % affect caption text
+    labelformat=lstcptlblfmt, % Listing (၂.၁), Listing <၂.၁> etc
+    labelsep=lstcptsep % Listing (၂.၁) - or Listing (၂.၁): etc
+}
+
+% For table of contents
+\contentsmargin[1cm]{0cm}
+\titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries}
+{\thecontentslabel\enspace}
+{\hspace{1.05em}}
+{ \hfill\contentspage}[\vskip 6pt]
+
+\titlecontents{section}[1em]{\color{steelblue}\normalsize\bfseries}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
+
+\titlecontents{subsection}[2.7em]{\color{steelblue}\normalfont\bfseries}
+{\thecontentslabel\enspace}
+{}
+{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
+%%%=================================================================================================
+
+
+%Noto Serif Myanmar SemiCondensed Bold
+%Myanmar Angoun
+\newcommand{\mmpdk}       {\fontspec[Script=Myanmar,Scale=0.85, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+%\newcommand{\mmpdkchno}       {\fontspec[Script=Myanmar,Scale=1.5, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mmpdkchno}       {\fontspec[Script=Myanmar,Scale=2, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed Bold}\selectfont}
 
 %%% Switching to type writer font and sans serif font in paragraph
 % Make sure to set the color to match the main font color
@@ -134,11 +288,19 @@
 %%% Switching to type writer font and sans serif font in titles and caption
 % Make sure not to set the color. Color should be applied later at the respective
 % formatting applied to titles, caption, headers etc.,
-\newcommand{\myttlcodetmp}   {\fontspec[Scale=1, Script=Latin]{Ubuntu Mono}\selectfont}
+\newcommand{\myttlcodetmp}   {\fontspec[Scale=1, Script=Latin, Scale=MatchLowercase,BoldFont={Fira Mono Medium}]{Fira Mono}\selectfont}
 \newcommand{\myttlentmp}   {\fontspec[Scale=1,Scale=MatchLowercase, Script=Latin]{Verdana}\selectfont}
+%Arial Rounded MT Bold
+\newcommand{\myenchsectmp}   {\fontspec[Scale=1,Scale=MatchLowercase, Script=Latin, BoldFont={Helvetica Neue Medium}]{Helvetica Neue Medium}\selectfont}
+\newcommand{\mymmchsectmp}   {\fontspec[Scale=1,Scale=MatchLowercase, Script=Myanmar]{Myanmar Angoun}\selectfont}
+
 % Limiting the scope of the selected font
 \newcommand{\myttlcode}   [1]{{\myttlcodetmp{#1}}}
 \newcommand{\myttlen}   [1]{{\myttlentmp{#1}}}
+\newcommand{\myenchsec}   [1]{{\myenchsectmp{#1}}}
+\newcommand{\mymmchsec}   [1]{{\mymmchsectmp{#1}}}
+
+
 
 %%% Changes the spacing for everything in the document, including footnotes and tables 
 \renewcommand{\baselinestretch}{1.35} 
@@ -155,68 +317,82 @@
   \expandafter\@@mmnum\fi  
 }  
 \renewcommand\@arabic{\@mmnum} % to reset number in \arabic to \mmnum 
+
+\makeatother 
+\makeatletter  
+\def\@mmalph#1{\expandafter\@@mmalph\number#1\@nil}  
+\def\@@mmalph#1{%  
+  \ifx#1\@nil  
+  \else  
+  \char\numexpr#1+"1000-1\relax  
+  \expandafter\@@mmalph\fi  
+}  
+\renewcommand\@alph{\@mmalph} % to reset number in \alph to \mmalph 
 \makeatother 
 
 
-%%% Formatting part, chapter, section, subsection, subsubsection heading and table of contents
-%%% and caption
-% For caption
-\DeclareCaptionFont{captionfont}{\color{iron}\bfseries\fontspec[Script=Myanmar,Scale=0.9, BoldFont={Pyidaungsu Bold}]{Pyidaungsu Bold}\selectfont}
-\captionsetup{singlelinecheck=false,justification=raggedright,font=captionfont}
-% For table of contents
-\contentsmargin[1cm]{0cm}
-\titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries\mmpdk}
-{\thecontentslabel\enspace}
-{\hspace{1.05em}}
-{ \hfill\contentspage}[\vskip 6pt]
 
-\titlecontents{section}[1em]{\color{steelblue}\normalsize\bfseries\mmpdk}
-{\thecontentslabel\enspace}
-{}
-{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 4pt]
 
-\titlecontents{subsection}[2.7em]{\color{steelblue}\normalfont\bfseries\mmpdk}
-{\thecontentslabel\enspace}
-{}
-{\titlerule*[1pc]{.}\quad\contentspage}[\vskip 3pt]
 
-% For titles and their name in headers
-\titleformat{\section}[block] 
-{\color{MidnightBlue}\normalfont\large\bfseries\mmpdk }{{\color{MidnightBlue}\large\thesection}}{1em}{}
-
-\titleformat{\subsection}[block] 
-{\color{MidnightBlue}\normalsize \mmpdk}{{\color{MidnightBlue}\normalsize\thesubsection}}{1em}{}
-
-\titleformat{\subsubsection}[block] 
-{\color{MidnightBlue}\normalsize\mmpdk }{{\color{MidnightBlue}\normalsize\thesubsubsection}}{1em}{}
-
-\titleformat{\chapter}[display] 
-    {\color{MidnightBlue}\normalfont\Huge\bfseries\mmpdk }{\color{MidnightBlue}{\Huge\mmpdk\thechapter}}{1ex}
-    {\filright} 
-
-\titleformat{\part}[display] 
-{\filcenter\LARGE\mmpdk}{{\large\partname\; \thepart}}{1em}{\thispagestyle{empty}}
 
 %%% Code listing related
-\newfontface\pgcode[Scale=1, BoldFont={Ubuntu Mono Bold}, Script=Latin]{Ubuntu Mono}
-\lstset{
-  language     = Java,
-  backgroundcolor=\color{gray!10!white},
-  %frame=L,
-  xleftmargin=0pt,
-  breaklines=false,
-  tabsize=8,
-  basicstyle   = \pgcode,
-  commentstyle = \color{gray},
-  keywordstyle = \color{darkgray}\textbf,
-  stringstyle  = \color{green!70!black},
-  stringstyle  = \color{red},
-  columns      = fullflexible,
-  numbers      = left,
-  numberstyle  = \scriptsize\sffamily\color{gray},
-  caption      = A hello world program in Java,
-  showstringspaces = false,
-}
+\newfontface\pgcode[Scale=1, BoldFont={Ubuntu Mono Bold}, Script=Latin, Color=iron]{Ubuntu Mono}
+% https://tex.stackexchange.com/questions/551500/elegant-margin-in-listing-environment
+
+\lstnewenvironment{lstcodeminimal}[1]{
+  \lstset{
+      language     = Java,
+      %backgroundcolor=\color{gray!10!white},
+      breaklines=false,
+      tabsize=8,
+      basicstyle   = \pgcode,
+      commentstyle = \color{gray},
+      keywordstyle = \color{darkgray}\textbf,
+      stringstyle  = \color{green!70!black},
+      stringstyle  = \color{red},
+      columns      = fullflexible,
+      numberstyle  = \scriptsize\sffamily\color{gray},
+      showstringspaces = false,
+      %frame=single,
+      %framerule=0pt,
+      %framextopmargin=1pt,
+      %framexbottommargin=1pt,
+      %framexleftmargin=1pt,
+      xleftmargin=0pt,
+      %framesep=3pt,
+      %xleftmargin=3pt,
+      linewidth={\dimexpr \linewidth-3pt}  
+    }
+}{}
+
+\lstnewenvironment{lstcodesimple}[1][]{
+  \lstset{
+      language     = Java,
+      float=htbp,
+      backgroundcolor=\color{gray!10!white},
+      breaklines=false,
+      tabsize=8,
+      basicstyle   = \pgcode,
+      commentstyle = \color{gray},
+      keywordstyle = \color{darkgray}\textbf,
+      stringstyle  = \color{green!70!black},
+      stringstyle  = \color{red},
+      columns      = fullflexible,
+      numberstyle  = \scriptsize\sffamily\color{gray},
+      showstringspaces = false,
+      frame=single,
+      framerule=0pt,
+      %framextopmargin=1pt,
+      %framexbottommargin=1pt,
+      %framexleftmargin=1pt,
+      %xleftmargin=4pt,
+      framesep=3pt,
+      xleftmargin=3pt,
+      linewidth={\dimexpr \linewidth-3pt},
+      belowcaptionskip=5pt,
+      caption=#1
+  }
+}{}
 
 %%% Custom utility commands
 \newcommand*\cleartoleftpage{%
@@ -252,14 +428,44 @@
 \newcommand{\enrun}{{\myen{run}}}
 \newcommand{\mmrun}{\myen{run}}
 
-\newcommand{\enJPL}{{\myen{(Java Programming Language)}}}
-\newcommand{\mmJPL}{{\myen{(Java Programming Language)}}}
+\newcommand{\enJPL}{{\myen{Java Programming Language}}\xspace}
+\newcommand{\mmJPL}{{\myen{Java Programming Language}\xspace}}
 
 \newcommand{\enPL}{“ပရိုဂရမ်ရေးရန် အသုံးပြုသည့် ဘာသာစကား”{\myen{(programming language)}}}
-\newcommand{\mmPL}{{\myen{programming language}}}
+\newcommand{\mmPL}{{\myen{programming language}}\xspace}
 
 \newcommand{\encomputer}{ကွန်ပျူတာ{\myen{(computer)}}}
 \newcommand{\mmcomputer}{ကွန်ပျူတာ}
+
+\newcommand{\ensyntax}{ဆင်းတက်စ်{\myen{(syntax)}}}
+\newcommand{\mmsyntax}{ဆင်းတက်စ်}
+
+\newcommand{\ensyntaxerr}{ဆင်းတက်စ် အမှား{\myen{(syntax error)}}}
+\newcommand{\mmsyntaxerr}{ဆင်းတက်စ် အမှား}
+
+\newcommand{\enintellij}{\myen{IntelliJ IDEA}\xspace}
+
+\newcommand{\enIDEFull}{\myen{Integrated Development Environment(IDE)}\xspace}
+\newcommand{\enIDE}{\myen{IDE}\xspace}
+
+\newcommand{\encurlybrpair}{တွန့်ကွင်း အဖွင့်နှင့် အပိတ်{\myen{opening and closing curly braces}}}
+\newcommand{\mmcurlybrpair}{တွန့်ကွင်း အဖွင့်နှင့် အပိတ်}
+
+\newcommand{\entemplate}{{\myen{template}}\xspace}
+
+\newfontfamily{\MymrSubst}{Noto Serif Myanmar SemiCondensed Bold}
+
+
+\XeTeXinterchartokenstate=1
+\newXeTeXintercharclass\MymrSubst
+
+\count255="0
+\loop\ifnum\count255<"255
+  \XeTeXcharclass\count255=\MymrSubst
+  \advance\count255 by 1
+\repeat
+
+
 
 \newcommand\blankpage{%
     \null
@@ -274,7 +480,7 @@
 
 \begin{document}
 
-\setcounter{secnumdepth}{3} % counter for susubsection
+\setcounter{secnumdepth}{2} % counter for susubsection
 \setcounter{tocdepth}{3} % to view susubsection in toc
 
 \frontmatter

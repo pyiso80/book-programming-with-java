@@ -1,33 +1,63 @@
-\chapter{Control Flow}
+\chapter{\myenchsec{Control Flow} \mymmchsec{ကွန်ထရိုးလ်ဖလိုး}}
 \XeTeXlinebreaklocale "my_MM"  %Myanmar line and character breaks
 \XeTeXinterwordspaceshaping=2
 \begin{sloppypar}
-\color{tungsten}
 ကားရဲလ်ကို ရှေ့ကို ၂၅ လှမ်း ရွှေ့ခိုင်းချင်တယ်။ \mycode{move(); move(); move(); ...move();} ၂၅ ခါ ရေးလို့‌တော့ရတာပေါ့။ ဒါပေမယ့် စာရိုက်ရတာ အချိန်လည်းကုန် လက်လဲညောင်း ဖြစ်မယ်။ {\mycode{move();}} ကို ၂၅ ကြိမ် ကျော့ပေးပါလို့ ခိုင်းလို့ရရင် ပိုမကောင်းဘူးလား။ 
 
 ကားရဲလ်ရဲ့ ရှေ့တည့်တည့် ခပ်လှမ်းလှမ်းမှာ နံရံတစ်ခုရှိနေမယ်။ ဘယ်လောက်ဝေးလဲ မသိဘူးဆိုပါစို့။ ကားရဲလ်ကို နံရံဆီရောက်အောင် သွားခိုင်းချင်တယ်။ နံရံက ဘယ်လောက်ဝေးလဲ မသိတော့ {\mycode{move}} ကို ဘယ်နှစ်ကြိမ် ကျော့ခိုင်းရမလဲ မသိနိုင်ဘူး။ ရှေ့မှာရှင်းနေသေးသ၍ \mycode{move} ပါလို့သာ ခိုင်းလို့ရမယ်ဆိုရင် တော်တော်လေး အဆင်ပြေပြီ။  
 
-အခြေအနေတစ်ခု မှန်တော့မှပဲ \mmcommand တွေကို လုပ်ဆောင်စေချင်တာမျိုးလဲ ရှိတယ်။ အဲဒီ အခြေနေနဲ့ မကိုက်ညီဘူး (တနည်းအားဖြင့် အခြေအနေက မှားနေခဲ့ရင်) \mmcommand တွေကို မလုပ်ဆောင်ပဲ ကျော်သွားစေချင်တယ်။ ရှေ့မှာပြောခဲ့တဲ့ နံရံအောက််ခြေမှာ \mmbeeper တစ်ခု ရှိနေနိုင်တယ်၊ ရှိချင်မှလည်း ရှိမယ်ဆိုပါစို့။ \mmbeeper ရှိနေခဲ့ရင် နံရံ အခြားတဘက်မှာ \mmbeeper ကို ထားခိုင်းချင်တယ်။  ဒါဆိုရင် \mmbeeper ရှိနေမှပဲ အခြားတဘက်ကို ရွှေ့ခိုင်းဖို့ လိုအပ်တဲ့ \mmcommand တွေကို လုပ်ဆောင်စေချင်တယ်။ \mmbeeper မရှိဘူးဆိုရင် အဲဒီ \mmcommand တွေကို မလုပ်ဆောင်စေချင်ဘူး။  
+အခြေအနေတစ်ခု မှန်တော့မှပဲ \mmcommand တွေကို  လုပ်ဆောင်စေချင်တာမျိုးလဲ ရှိတယ်။ အဲဒီ အခြေနေနဲ့ မကိုက်ညီဘူး (တနည်းအားဖြင့် အခြေအနေက မှားနေခဲ့ရင်) \mmcommand တွေကို မလုပ်ဆောင်ပဲ ကျော်သွားစေချင်တယ်။ ရှေ့မှာပြောခဲ့တဲ့ နံရံအောက််ခြေမှာ \mmbeeper တစ်ခု ရှိနေနိုင်တယ်၊ ရှိချင်မှလည်း ရှိမယ်ဆိုပါစို့။ \mmbeeper ရှိနေခဲ့ရင် နံရံ အခြားတဘက်မှာ \mmbeeper ကို ထားခိုင်းချင်တယ်။  ဒါဆိုရင် \mmbeeper ရှိနေမှပဲ အခြားတဘက်ကို ရွှေ့ခိုင်းဖို့ လိုအပ်တဲ့ \mmcommand တွေကို လုပ်ဆောင်စေချင်တယ်။ \mmbeeper မရှိဘူးဆိုရင် အဲဒီ \mmcommand တွေကို မလုပ်ဆောင်စေချင်ဘူး။  
 
- နောက်ထပ်တစ်မျိုးက အခြေအနေတစ်ခု မှန်ခဲ့ရင် လုပ်ဆောင်စေချင်တဲ့ \mmcommand တွေနဲ့ မှားခဲ့ရင်‌ လုပ်ဆောင်စေချင်တဲ့ \mmcommand ‌တွေကို မတူပဲဖြစ်နေတာမျိုးပါ။ တနည်းအားဖြင့် အခြေအနေပေါ် မူတည်ပြီး ခိုင်းရမယ့် အလုပ်ကမတူဘူး။ \mmbeeper ရှိခဲ့ရင် နံရံရဲ့ အခြားဘက်ကိုရွှေ့ခိုင်းချင်တယ်၊ မရှိခဲ့ရင်တော့ လာလမ်းအတိုင်း ပြန်လာစေချင်တယ် ဆိုပါစို့။ ဒါဆိုရင် \mmbeeper ရှိခြင်း၊ မရှိခြင်းပေါ် မူတည်ပြီး လုပ်ဆောင်ရမယ့် \mmcommand တွေက မတူဘူး။ 
-
-
- အသုံးပြုရတဲ့ \toem{\myemen{control flow statements} \myemmm{များတွင်} \myemcode{for, while, if, if else} \myemmm{တို့ပါဝင်သည်။} } \color{tungsten} တွေကို  ဒီအခန်းမှာ ‌လေ့လာကြမယ်။ ကမ္ဘာ့
-
- အသုံးပြုရတဲ့ \todef{\mydefen{control flow statements} \mydefmm{များတွင်} \mydefcode{for, while, if, if else} \mydefmm{တို့ပါဝင်သည်။} } \color{tungsten} တွေကို  ဒီအခန်းမှာ ‌လေ့လာကြမယ်။ ကမ္ဘာ့
+ နောက်ထပ်တစ်မျိုးက အခြေအနေတစ်ခု မှန်ခဲ့ရင် လုပ်ဆောင်စေချင်တဲ့ \mmcommand တွေနဲ့ မှားခဲ့ရင်‌ လုပ်ဆောင်စေချင်တဲ့ \mmcommand ‌တွေကို မတူပဲဖြစ်နေတာမျိုးပါ။ တနည်းအားဖြင့် အခြေအနေပေါ် မူတည်ပြီး ခိုင်းရမယ့် အလုပ်ကမတူဘူး။ \mmbeeper ရှိခဲ့ရင် နံရံရဲ့ အခြားဘက်ကိုရွှေ့ခိုင်းချင်တယ်၊ မရှိခဲ့ရင်တော့ လာလမ်းအတိုင်း ပြန်လာစေချင်တယ် ဆိုပါစို့။ ဒါဆိုရင် \mmbeeper ရှိခြင်း၊ မရှိခြင်းပေါ် မူတည်ပြီး လုပ်ဆောင်ရမယ့် \mmcommand တွေက  မတူဘူး။ 
 
  
 
- \section{{\myttlcode{for}} loop}
-
- \section{{\myttlcode{while}} loop}
-
- \section{{\myttlcode{if}} and {\myttlcode{if else}} statements}
-
- \section{Nested structures}
-
-
-
+\section{{\myttlcode{for}} \myenchsec{loop}}
+\mycode{for} \myen{loop} ကို \mmcommand တစ်ခု သို့ တစ်စုကို ပြန်ကျော့ဖို့ အသုံးပြုနိုင်တယ်။ \mmsyntax က အခုလိုပုံစံမျိုး နဲ့ရေးရတယ်  
+\begin{lstcodeminimal}[]
+for (int i = 0; i < N; i++) {
+    //one or more commands here
+}
+\end{lstcodeminimal}
+\mycode{move} ကို နှစ်ဆယ့်ငါးကြိမ် ကျော့ချင်ရင် 
+\begin{lstcodeminimal}[]
+for (int i = 0; i < 25; i++) {
+    move();
+}
+\end{lstcodeminimal}
+ပြန်ကျော့ချင်တဲ့ \mmcommand တွေကို \mmcurlybrpair အတွင်း လိုင်းတွေမှာရေးပြီး \mycode{N} နေရာမှာ အကြိမ်အရေအတွက်ကို အစားထိုးပေးရမယ်။ \mycode{int i} မှာ ခြားထားရပါမယ်။ \mycode{inti} ဆိုရင် \mmsyntaxerr ဖြစ်မယ်။ \mycode{i++} က တဆက်ထဲ ဖြစ်ရမယ်။ \mycode {i ++, i + +, i+ +} ရေးလို့ မရဘူး။ ကျန်တဲ့ စပေ့စ်ခြားလဲရတယ် မခြားလဲရတယ်။ ဒီလိုရေးလို့ ရပေမယ့် ဖတ်ရတာ ခက်တယ်။ ပူးကပ်နေပြီး။
+\begin{lstcodeminimal}[]
+for (int i=0;i<25;i++){
+move();
+}
+\end{lstcodeminimal}
+\afterpage{\blankpage}
+ပြန်ကျော့ချင်တဲ့ \mmcommand တွေကို \mmcurlybrpair အတွင်း လိုင်းတွေမှာရေးပြီး \mycode{N} နေရာမှာ အကြိမ်အရေအတွက်ကို အစားထိုးပေးရမယ်။ \mycode{int i} မှာ ခြားထားရပါမယ်။ \mycode{inti} ဆိုရင် \mmsyntaxerr ဖြစ်မယ်။ \mycode{i++} က တဆက်ထဲ ဖြစ်ရမယ်။ \mycode {i ++, i + +, i+ +} ရေးလို့ မရဘူး။ ကျန်တဲ့ စပေ့စ်ခြားလဲရတယ် မခြားလဲရတယ်။ ဒီလိုရေးလို့ ရပေမယ့် ဖတ်ရတာ ခက်တယ်။ ပူးကပ်နေပြီး။ပြန်ကျော့ချင်တဲ့ \mmcommand တွေကို \mmcurlybrpair အတွင်း လိုင်းတွေမှာရေးပြီး \mycode{N} နေရာမှာ အကြိမ်အရေအတွက်ကို အစားထိုးပေးရမယ်။ \mycode{int i} မှာ ခြားထားရပါမယ်။ \mycode{inti} ဆိုရင် \mmsyntaxerr ဖြစ်မယ်။ \mycode{i++} က တဆက်ထဲ ဖြစ်ရမယ်။ \mycode {i ++, i + +, i+ +} ရေးလို့ မရဘူး။ ကျန်တဲ့ စပေ့စ်ခြားလဲရတယ် မခြားလဲရတယ်။ ဒီလိုရေးလို့ ရပေမယ့် ဖတ်ရတာ ခက်တယ်။ ပူးကပ်နေပြီး။ပြန်ကျော့ချင်တဲ့ \mmcommand တွေကို \mmcurlybrpair အတွင်း လိုင်းတွေမှာရေးပြီး \mycode{N} နေရာမှာ အကြိမ်အရေအတွက်ကို အစားထိုးပေးရမယ်။ \mycode{int i} မှာ ခြားထားရပါမယ်။ \mycode{inti} ဆိုရင် \mmsyntaxerr ဖြစ်မယ်။ \mycode{i++} က တဆက်ထဲ ဖြစ်ရမယ်။ \mycode {i ++, i + +, i+ +} ရေးလို့ မရဘူး။ ကျန်တဲ့ စပေ့စ်ခြားလဲရတယ် မခြားလဲရတယ်။ ဒီလိုရေးလို့ ရပေမယ့် ဖတ်ရတာ ခက်တယ်။ ပူးကပ်နေပြီး။ပြန်ကျော့ချင်တဲ့ \mmcommand တွေကို \mmcurlybrpair အတွင်း လိုင်းတွေမှာရေးပြီး \mycode{N} နေရာမှာ အကြိမ်အရေအတွက်ကို အစားထိုးပေးရမယ်။ \mycode{int i} မှာ ခြားထားရပါမယ်။ \mycode{inti} ဆိုရင် \mmsyntaxerr ဖြစ်မယ်။ \mycode{i++} က တဆက်ထဲ ဖြစ်ရမယ်။ \mycode {i ++, i + +, i+ +} ရေးလို့ မရဘူး။ ကျန်တဲ့ စပေ့စ်ခြားလဲရတယ် မခြားလဲရတယ်။ ဒီလိုရေးလို့ ရပေမယ့် ဖတ်ရတာ ခက်တယ်။ ပူးကပ်နေပြီး။
+\begin{lstcodeminimal}[]
+for (int i = 0; i < N; i++) {
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more command s here
+    //one or more commands here
+    //one or more commands here
+    //one or more commands here
+    //one or more comman ds h ere
+    //one or more commands here
+    //one or more com mands here
+    //one or more commands here
+    //one or more commands here
+    //one or more comm ands  here
+}
+\end{lstcodeminimal}
 
  % \mmcommand တွေကို ထပ်ခါထပ်ခါ ပြန်ကျော့ခိုင်းဖို့ လိုအပ်လေ့ရှိတယ်။ 
  %\mmprogram တွေရေးတဲ့အခါမှာ \mmcommand တွေကို အခြေအနေတစ်ခု မှန်နေသ၍ ပြန်ကျော့ပြီးလုပ်ဆောင်ခိုင်းဖို့ လိုအပ်လေ့ရှိတယ်။
