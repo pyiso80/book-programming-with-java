@@ -28,6 +28,7 @@
 \usepackage{caption}
 \usepackage[unicode=true]{hyperref}
 \usepackage{afterpage}
+\usepackage{booktabs}
 
 
 %%% Experimental to solve error regarding pdf render and hyperlink error
@@ -51,12 +52,17 @@
 \def\reftextpagerange#1#2{on စာမျက်နှာ၂၂~\pageref{#1}--\pageref{#2}}%
 \def\reftextlabelrange#1#2{\ref{#1} to~\ref{#2}}%
 
+\renewcommand{\thesubfigure}{\alph{subfigure}}
+\makeatletter
+\renewcommand\p@subfigure{\thefigure,~}
+\makeatother
 
 %%% Replace english names with Myanmar
 \renewcommand{\contentsname}{မာတိကာ} 
 \renewcommand{\chaptername}{}
 \renewcommand{\figurename}{ပုံ}
-
+\renewcommand\lstlistingname{Listing}
+\renewcommand\lstlistlistingname{Listings}
 
 %%% definition of Apple colors
 \definecolor{iron}{HTML}{5E5E5E}
@@ -73,6 +79,8 @@
 \newcommand{\cptcolor}{steel}
 \newcommand{\lstcapboxcolor}{lstcptcolor}
 \newcommand{\lstcapcolor}{white}
+\newcommand{\tblcapcolor}{steel}
+\newcommand{\tblhdrtxtcolor}{tungsten}
 
 
 
@@ -130,9 +138,9 @@
 \newcommand{\mymmsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\myensecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\mymmsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\myensubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\mymmsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=.9, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\myensubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
@@ -141,6 +149,8 @@
 \newcommand{\mymmpartttlnumfnt}       {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmchhdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsechdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\mymmtblhdrfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\myentblhdrfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
 
 \newcommand{\mymmhdr}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 
@@ -151,12 +161,16 @@
 \newcommand{\myensubsecttl}   [1]{{\myensubsecttlfnt{#1}}}
 \newcommand{\myensubsubsecttl}   [1]{{\myensubsubsecttlfnt{#1}}}
 \newcommand{\myenpartttl}   [1]{{\myenpartttlfnt{#1}}}
+\newcommand{\myentblhdr}   [1]{{\myentblhdrfnt{#1}}}
+
 
 \newcommand{\mycodechttl}   [1]{{\mycodegeneric{#1}}}
 \newcommand{\mycodesecttl}   [1]{{\mycodegeneric{#1}}}
 \newcommand{\mycodesubsecttl}   [1]{{\mycodegeneric{#1}}}
 \newcommand{\mycodesubsubsecttl}   [1]{{\mycodegeneric{#1}}}
+
 \newcommand{\mycodepartttl}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\mytblhdr}[1]{\textnormal{\color{\tblhdrtxtcolor}\textbf\mymmtblhdrfnt{#1}}}
 
 \titleformat{\chapter}[display] 
     {\color{MidnightBlue}\Huge\bfseries\mymmchttlfnt }{\color{lightsteelblue}{\Huge\mymmchttlnumfnt\thechapter}}{1ex}
@@ -181,18 +195,31 @@
 \newcommand{\myenfigcpt}   [1]{{\myenfigcptfnt{#1}}}
 \newcommand{\mycodefigcpt}   [1]{{\myenfigcptfnt{#1}}}
 \newcommand{\myenlstcpt}   [1]{{\myenlstcptfnt{#1}}}
-\newcommand{\mycodelstcpt}   [1]{{\myenlstcptfnt{#1}}} 
+\newcommand{\mycodelstcpt}   [1]{{\mycodegeneric{#1}}}
+
 %%%=================================================================================================
 %%% TOC, FIGURE, LISTING CAPTIONS
-\renewcommand{\thesubfigure}{\alph{subfigure}}
+%\renewcommand{\thesubfigure}{\alph{subfigure}}
+%https://tex.stackexchange.com/questions/125849/change-ref-format-for-subfigures/125881#125881
+\DeclareCaptionSubType[alph]{figure}
+%\captionsetup[subfigure]{labelformat=simple,justification=centerlast}
+
+\renewcommand\thesubfigure{\alph{subfigure})}
+\makeatletter
+\renewcommand\p@subfigure{\thefigure~}
+\makeatother
 \DeclareCaptionFont{captionfont}{\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Padauk Bold}, Color=\cptcolor]{Padauk}\selectfont}
 \captionsetup[figure]{singlelinecheck=false,justification=raggedright,font={captionfont, bf, small,sc,onehalfspacing,color=\cptcolor}}
 \DeclareCaptionLabelFormat{closing}{#2)}
-\captionsetup[subfigure]{labelformat=closing, labelsep=space}
+\captionsetup[subfigure]{labelformat=simple, labelsep=space}
 
 \DeclareCaptionFont{lstcptfullfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 \DeclareCaptionFont{lstcptlblfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 \DeclareCaptionFont{lstcpttxtfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, Color=white, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+
+\DeclareCaptionFont{tblcptfullfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+\DeclareCaptionFont{tblcptlblfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Padauk Bold}]{Padauk}\selectfont}
+\DeclareCaptionFont{tblcpttxtfnt}{\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 
 \DeclareCaptionLabelFormat{custom}
 {%
@@ -233,6 +260,26 @@
     labelsep=lstcptsep % Listing (၂.၁) - or Listing (၂.၁): etc
 }
 
+\DeclareCaptionLabelFormat{tblcptlblfmt}
+{%
+      #1 \textbf{#2}  %to get "Figure (1)", "Figure [1]", etc
+}
+% Separator style
+\DeclareCaptionLabelSeparator{tblcptsep}{-- } % to get "Figure (1):", "Figure(1) - Some caption" etc
+% Caption format    
+\DeclareCaptionFormat{tblcptfullfmt}
+{%
+    \color{\tblcapcolor} #1#2\small #3
+}
+\captionsetup[table]
+{
+    format=tblcptfullfmt,%
+    labelfont={tblcptlblfnt,bf, normalsize}, % affect label num and sep
+    textfont={tblcpttxtfnt,bf, normalsize},  % affect caption text
+    labelformat=tblcptlblfmt, % Listing (၂.၁), Listing <၂.၁> etc
+    labelsep=tblcptsep % Listing (၂.၁) - or Listing (၂.၁): etc
+}
+
 % For table of contents
 \contentsmargin[1cm]{0cm}
 \titlecontents{chapter}[0em]{\color{steelblue}\large\bfseries}
@@ -264,6 +311,7 @@
 \newcommand{\myentmp}     {\fontspec[Color=tungsten, Scale=1,Scale=MatchLowercase, Script=Latin]{Verdana}\selectfont}
 % Limiting the scope of the selected font
 \newcommand{\mycode}   [1]{{\mycodetmp{#1}}}
+\newcommand{\mycodebf}   [1]{{\bfseries\mycodetmp{#1}}}
 \newcommand{\myen}   [1]{{\myentmp{#1}}}
 
 %%% With \XeTeXinterwordspaceshaping=2, \color or \textcolor doesn't work 
@@ -339,7 +387,7 @@
 \newfontface\pgcode[Scale=1, BoldFont={Ubuntu Mono Bold}, Script=Latin, Color=iron]{Ubuntu Mono}
 % https://tex.stackexchange.com/questions/551500/elegant-margin-in-listing-environment
 
-\lstnewenvironment{lstcodeminimal}[1]{
+\lstnewenvironment{lstcodeminimal}[1][]{
   \lstset{
       language     = Java,
       %backgroundcolor=\color{gray!10!white},
@@ -365,10 +413,10 @@
     }
 }{}
 
-\lstnewenvironment{lstcodesimple}[1][]{
+\lstnewenvironment{lstcodesimple}[1][1]{
   \lstset{
       language     = Java,
-      float=htbp,
+      float=t,
       backgroundcolor=\color{gray!10!white},
       breaklines=false,
       tabsize=8,
@@ -404,6 +452,7 @@
 \newcommand{\toem}[1]{\textbf{#1}}
 
 \newcommand{\Fig}{ပုံ\xspace}
+\newcommand{\Lst}{\myen{Listing}\xspace}
 \newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\myen{(programming)}}}
 \newcommand{\mmprogramming}{ပရိုဂရမ်းမင်း}
 \newcommand{\enprogram}{ပရိုဂရမ်{\myen{(program)}}}
@@ -418,15 +467,15 @@
 \newcommand{\mmprogramCode}{ပရိုဂရမ်ကုဒ်}
 \newcommand{\enprogrammingLanguageDef}{ပရိုဂရမ်ရေးရန် အသုံးပြုသည့် ဘာသာစကား{\myen{(programming language)}}}
 \newcommand{\enprogrammingLanguage}{{\myen{programming language}}\xspace}
-\newcommand{\encontrolFlowStatement}{{\myen{control flow statement}}\xspace}
+\newcommand{\enControlFlowStatements}{{\myen{control flow statements}}\xspace}
 
 \newcommand{\enavenue}{ရိပ်သာလမ်း{\myen{(avenue)}}}
 \newcommand{\mmavenue}{ရိပ်သာလမ်း}
 \newcommand{\enstreet}{လမ်း{\myen{(street)}}}
 \newcommand{\mmstreet}{လမ်း}
 
-\newcommand{\enrun}{{\myen{run}}}
-\newcommand{\mmrun}{\myen{run}}
+\newcommand{\enrun}{{\myen{run}}\xspace}
+\newcommand{\mmrun}{\myen{run}\xspace}
 
 \newcommand{\enJPL}{{\myen{Java Programming Language}}\xspace}
 \newcommand{\mmJPL}{{\myen{Java Programming Language}\xspace}}
@@ -439,6 +488,10 @@
 
 \newcommand{\ensyntax}{ဆင်းတက်စ်{\myen{(syntax)}}}
 \newcommand{\mmsyntax}{ဆင်းတက်စ်}
+\newcommand{\ensemicol}{ဆမ်မီကော်လံ{\myen{(semicolon)}}}
+\newcommand{\mmsemicol}{ဆမ်မီကော်လံ}
+\newcommand{\eniteration}{အီထရေးရှင်း{\myen{(iteration)}}}
+\newcommand{\mmiteration}{အီထရေးရှင်း}
 
 \newcommand{\ensyntaxerr}{ဆင်းတက်စ် အမှား{\myen{(syntax error)}}}
 \newcommand{\mmsyntaxerr}{ဆင်းတက်စ် အမှား}
@@ -450,8 +503,25 @@
 
 \newcommand{\encurlybrpair}{တွန့်ကွင်း အဖွင့်နှင့် အပိတ်{\myen{opening and closing curly braces}}}
 \newcommand{\mmcurlybrpair}{တွန့်ကွင်း အဖွင့်နှင့် အပိတ်}
+\newcommand{\enOpeningCurlyBrace}{အဖွင့်တွန့်ကွင်း{\myen{opening brace}}}
+\newcommand{\mmOpeningCurlyBrace}{အဖွင့်တွန့်ကွင်း}
+\newcommand{\enClosingCurlyBrace}{အပိတ်တွန့်ကွင်း{\myen{closing curly brace}}}
+\newcommand{\mmClosingCurlyBrace}{အပိတ်တွန့်ကွင်း}
 
 \newcommand{\entemplate}{{\myen{template}}\xspace}
+\newcommand{\enBody}{ဘော်ဒီ{\myen{body}}}
+\newcommand{\mmBody}{ဘော်ဒီ}
+
+\newcommand{\enForLoop}{{\mycode{for} \myen{loop}}\xspace}
+\newcommand{\enForLoopBody}{{\mycode{for} \myen{loop} \mmBody}\xspace}
+\newcommand{\enWhileLoop}{{\mycode{while} \myen{loop}}\xspace}
+\newcommand{\enWhileLoopBody}{{\mycode{while} \myen{loop} \mmBody}\xspace}
+
+\newcommand{\enIf}{{\myen{template}}\xspace}
+\newcommand{\enIfElse}{{\myen{template}}\xspace}
+
+\newcommand{\enCondition}{ကွန်ဒီးရှင်း{\myen{condition}}}
+\newcommand{\mmCondition}{ကွန်ဒီးရှင်း}
 
 \newfontfamily{\MymrSubst}{Noto Serif Myanmar SemiCondensed Bold}
 
@@ -490,10 +560,10 @@
 
 \mainmatter
 % To test and verify macros and declarations have the desired effect
-\include{ch00_testing}
+%\include{ch00_testing}
 \include{ch01}
 \include{ch02}
-\include{ch03}
+%\include{ch03}
 
 
 

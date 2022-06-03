@@ -100,18 +100,56 @@
 
 \mmprogram ရေးဖို့အတွက် \encomputer\ နားလည်တဲ့ ဘာသာစကား တစ်မျိုးမျိုးကို အသုံးပြုပြီး ရေးရတယ်။ \mmcomputer\ နားလည်တဲ့၊ \mmcomputer ပရိုဂရမ်ရေးဖို့ အသုံးပြုတဲ့ ဘာသာစကားကို \enPL\ လို့ ခေါ်တယ်။ 
 
-မြန်မာ၊ အင်္ဂလိပ် စသည်ဖြင့် လူတွေရဲ့ ဘာသာစကားတွေမှာ သဒ္ဒါရှိသလိုပဲ \mmPL တွေမှာလည်း သဒ္ဒါရှိတယ်။ \mmprogram ရေးတဲ့အခါ အသုံးပြုတဲ့ \mmPL ရဲ့ ရေးပုံရေးနည်း၊ စည်းမျဉ်းစည်းကမ်း သတ်မှတ်ချက်တွေကို လိုက်နာဖို့လိုတယ်။ \mmPL ရဲ့ သဒ္ဒါကို \ensyntax\ လို့ ခေါ်တယ်။
+မြန်မာ၊ အင်္ဂလိပ် စတဲ့ လူတွေရဲ့ ဘာသာစကားတွေမှာ သဒ္ဒါရှိသလိုပဲ \mmPL တွေမှာလည်း သဒ္ဒါရှိတယ်။ \mmprogram ရေးတဲ့အခါ အသုံးပြုတဲ့ \mmPL ရဲ့ ရေးပုံရေးနည်း၊ စည်းမျဉ်းစည်းကမ်း သတ်မှတ်ချက်တွေကို လိုက်နာဖို့လိုတယ်။ \mmPL ရဲ့ သဒ္ဒါကို \ensyntax\ လို့ ခေါ်တယ်။
 
 ဒီအခန်းအတွက်က \mmsyntax အသေးစိတ် နားလည်ဖို့ မလိုသေးဘူး။ \enJPL ရဲ့ လိုအပ်ချက်အရ ပုံစံချပေးထားတဲ့ ကားရဲလ် \mmprogram\ \entemplate ကိုအသုံးပြုပြီး \mmcommand တွေကို \entemplate ထဲမှာပဲဖြည့်ရေးမယ်။ \entemplate က အခုလိုပုံစံပါ။
 
-\begin{lstcodesimple}[float, caption=ကားရဲလ် ပရိုဂရမ် template]
-public class ClassName extends stanford.karel.Karel{ 
-        public void run(){
+\begin{lstcodesimple}[float, caption=ကားရဲလ် ပရိုဂရမ် template, label={lst:Karel_template}]
+public class ClassName extends stanford.karel.Karel { 
+        public void run() {
                 //Karel commands
         }        
 }
 \end{lstcodesimple}
 
+\noindent \mycode{ClassName} နေရာမှာ ရေးမယ့် \mmprogram အမည်ကို အစားထိုးရမယ်။ \mycode{MeetKarel} လို့ ‌ပေးရအောင်။
+\begin{lstcodeminimal}[]
+public class MeetKarel extends stanford.karel.Karel { 
+        public void run() {
+                //Karel commands
+        }        
+}
+\end{lstcodeminimal} 
+
+\mmcommand တွေကိုတော့ \mycode{public void run()} နဲ့ဆိုင်တဲ့ \mmcurlybrpair အတွင်းမှာ ရေးပေးရမယ်။ ဖတ်ရလွယ်အောင် တစ်လိုင်းမှာ တစ်ခုပဲရေးလေ့ရှိတယ်။ \mycode{move} \mmcommand ကို \enJPL \mmsyntax နဲ့ကိုက်ညီအောင် \mycode{move()} လို့ရေးဖို့ လိုအပ်တယ်။ \mmcommand တစ်ခုအပြီးမှာ \ensemicol\ ထည့်ပေးဖို့လဲလိုတယ်။ ဝါကျတစ်ကြောင်းဆုံးရင် ပုဒ်မချပေးရတဲ့ သဘောပဲ။ \mmcommand တစ်ခု ပြီးတိုင်း \mmsemicol\ ထည့်ပေးဖို့လိုတယ်။
+\begin{lstcodeminimal}[]
+public class MeetKarel extends stanford.karel.Karel { 
+        public void run() {
+                move();
+        }        
+}
+\end{lstcodeminimal} 
+
+\noindent \mmbeeper ရွှေ့ဖို့အတွက် \mmprogram အပြည့်အစုံကို \Lst \vref*{lst:meet_karel} မှာ ကြည့်ပါ။ \entemplate ဖွဲ့စည့်တည်ဆောက်ထားပုံ၊ အသုံးပြုထားတဲ့ \mycode{public, class, extends, void} စတဲ့ စကားလုံးတွေရဲ့ အဓိပ္ပါယ် စတာတွေ နားလည်ဖို့ လိုနေသေးပေမယ့် လောလောဆယ်ဆယ်တော့ ဒါတွေခဏထားပြီး ကားရဲလ်ကို ခိုင်းထားတဲ့ \mmcommand တွေဟာ \mmbeeper ကို နေရာမှန်အောင် ရွှေ့ပေးဖို့အတွက် မှန်ကန်လား၊ ပြဿနာတစ်ခုခု ရှိနေမလား သိရအောင် \mmprogram ကို \mmrun ကြည့်ရအောင်။ \mmprogram က လိုင်းအရေအတွက် နည်းပေမယ့် မှားနိုင်ပါတယ်။  \mmbeeper ရှိတဲ့ \mmcorner\ ကို မရောက် သေးပဲ ကောက်ခိုင်းတာ၊ အရပ်မျက်နှာ မှားပြီး လှည့်ခိုင်းမိတာ၊ အကြိမ်အရေအတွက် လိုနေတာ၊ ပိုသွားတာ စသည်ဖြင့် မှားနိုင်တဲ့ အချက်တွေ အများကြီးပါ။ 
+\begin{lstcodesimple}[float, caption=ကားရဲလ် ပရိုဂရမ် template, label={lst:meet_karel}]
+public class MeetKarel extends stanford.karel.Karel { 
+        public void run() {
+                move();
+                move();
+                move();
+                pickBeeper();
+                turnLeft();
+                move();
+                move();
+                turnLeft();
+                turnLeft();
+                turnLeft();
+                move();
+                putBeeper();
+                move();
+        }        
+}
+\end{lstcodesimple}
 
 
 
