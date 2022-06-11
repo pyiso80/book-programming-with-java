@@ -1,8 +1,14 @@
-%!TEX TS-program = xelatex  
+% !TeX program = XeLaTex
 %!TEX encoding = UTF-8 Unicode
+
+
 \documentclass[twoside, hidelinks]{book}
 \hfuzz=10000pt
 \hbadness=99999
+
+%\usepackage[english]{babel}
+%\babelprovide[mapdigits, import, main]{burmese}
+
 \usepackage[paperheight=9.25in,
                 paperwidth=7.38in,
                 left=1.4in,
@@ -27,30 +33,51 @@
 \usepackage{listings}
 \usepackage{caption}
 \usepackage[unicode=true]{hyperref}
+\pdfstringdefDisableCommands{\let\footnote\gobbleoptandarg}%
+%\usepackage{cleveref}
+
 \usepackage{afterpage}
 \usepackage{booktabs}
+\usepackage[]{enumitem}
+\setlist{nosep}
+\setitemize[1]{label=--}
+\setenumerate[1]{label={\myen{(}\alph*\myen{)}}}
 
 
 %%% Experimental to solve error regarding pdf render and hyperlink error
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{naturalnames}{hyperref}
-\pdfstringdefDisableCommands{%
-  \def\\{}%
-  \def\texttt#1{<#1>}%
-}
+%\PassOptionsToPackage{unicode}{hyperref}
+%\PassOptionsToPackage{naturalnames}{hyperref}
+%\pdfstringdefDisableCommands{%
+%  \def\\{}%
+%  \def\texttt#1{<#1>}%
+%}
 
 %\hypersetup{colorlinks = false,linkcolor = blue,anchorcolor =red,citecolor = blue,filecolor = red,urlcolor = red, pdfauthor=author}
 
 
 %%%  Replace english with Myanmar, tweaking varioref package 
-\def\reftextfaceafter{on the \reftextvario{facing}{next} စာမျက်နှာ}%
-\def\reftextfacebefore{on the \reftextvario{facing}{preceding}စာမျက်နှာ}%
-\def\reftextafter{on the \reftextvario{following}{next} စာမျက်နှာ}%
-\def\reftextbefore{on the \reftextvario{preceding}{previous} စာမျက်နှာ}%
-\def\reftextcurrent{on \reftextvario{this}{the current} စာမျက်နှာ}%
+
+%\def\reftextfaceafter{on the \reftextvario{facing}{next} စာမျက်နှာ}%
+%\def\reftextfacebefore{on the \reftextvario{facing}{preceding}စာမျက်နှာ}%
+%\def\reftextafter{on the \reftextvario{following}{next} စာမျက်နှာ}%
+%\def\reftextbefore{on the \reftextvario{preceding}{previous} စာမျက်နှာ}%
+%\def\reftextcurrent{on \reftextvario{this}{the current} စာမျက်နှာ}%
+%\def\reftextfaraway#1{စာမျက်နှာ~\pageref{#1}}%
+%\def\reftextpagerange#1#2{on စာမျက်နှာ၂၂~\pageref{#1}--\pageref{#2}}%
+%\def\reftextlabelrange#1#2{\ref{#1} to~\ref{#2}}%
+
+
+
+\def\reftextfaceafter{\reftextvario{မျက်နှာချင်းဆိုင်}{နောက်} စာမျက်နှာ}%%
+\def\reftextafter {နောက်စာမျက်နှာ}%
+\def\reftextfacebefore{ရှေ့စာမျက်နှာ}%
+\def\reftextbefore {ရှေ့စာမျက်နှာ}%
+\def\reftextcurrent{\reftextvario{ယခု}{လက်ရှိ} စာမျက်နှာ}%
 \def\reftextfaraway#1{စာမျက်နှာ~\pageref{#1}}%
-\def\reftextpagerange#1#2{on စာမျက်နှာ၂၂~\pageref{#1}--\pageref{#2}}%
+\def\reftextpagerange#1#2{on စာမျက်နှာ~\pageref{#1}--\pageref{#2}}%
 \def\reftextlabelrange#1#2{\ref{#1} to~\ref{#2}}%
+
+
 
 \renewcommand{\thesubfigure}{\alph{subfigure}}
 \makeatletter
@@ -133,24 +160,24 @@
 %%%=================================================================================================
 %%% CHAPTER AND SECTION RELATED FORMATTING
 \newcommand{\mymmchttlfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
-\newcommand{\myenchttlfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
+\newcommand{\myenchttlfnt}           {\fontspec[Script=Latin,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
 \newcommand{\mymmchttlnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
 \newcommand{\mymmsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\myensecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensecttlfnt}          {\fontspec[Script=Latin,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\myensubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensubsecttlfnt}          {\fontspec[Script=Latin,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=1, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\myensubsubsecttlfnt}          {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myensubsubsecttlfnt}          {\fontspec[Script=Latin,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsubsubsecttlnumfnt}       {\fontspec[Script=Myanmar,Scale=.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmpartttlfnt}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\myenpartttlfnt}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
+\newcommand{\myenpartttlfnt}          {\fontspec[Script=Latin,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmpartttlnumfnt}       {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmchhdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmsechdrnumfnt}        {\fontspec[Script=Myanmar,Scale=MatchLowercase, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 \newcommand{\mymmtblhdrfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
-\newcommand{\myentblhdrfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
+\newcommand{\myentblhdrfnt}           {\fontspec[Script=Latin,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
 
 \newcommand{\mymmhdr}          {\fontspec[Script=Myanmar,Scale=0.8, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 
@@ -162,6 +189,7 @@
 \newcommand{\myensubsubsecttl}   [1]{{\myensubsubsecttlfnt{#1}}}
 \newcommand{\myenpartttl}   [1]{{\myenpartttlfnt{#1}}}
 \newcommand{\myentblhdr}   [1]{{\myentblhdrfnt{#1}}}
+
 
 
 \newcommand{\mycodechttl}   [1]{{\mycodegeneric{#1}}}
@@ -185,17 +213,21 @@
     {\filcenter\LARGE\mymmpartttlfnt}{{\large\partname\; \mymmpartttlnumfnt\thepart}}{1em}{\thispagestyle{empty}}
 
 %%% Figure and listing's caption related logical formatting
-\newcommand{\mymmfigcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\mymmfigcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 \newcommand{\myenfigcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
 \newcommand{\mymmfigcptnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
-\newcommand{\mymmlstcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Noto Serif Myanmar SemiCondensed Bold}]{Noto Serif Myanmar SemiCondensed}\selectfont}
+\newcommand{\mymmlstcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Padauk Bold}]{Padauk}\selectfont}
 \newcommand{\myenlstcptfnt}           {\fontspec[Script=Myanmar,Scale=1, BoldFont={Times New Roman Bold}]{Times New Roman}\selectfont}
 \newcommand{\mymmlstcptnumfnt}        {\fontspec[Script=Myanmar,Scale=2.5, BoldFont={Myanmar Angoun}]{Myanmar Angoun}\selectfont}
 
+\newcommand{\mycodefigcpt}   [1]{{\mycodegeneric{#1}}}
 \newcommand{\myenfigcpt}   [1]{{\myenfigcptfnt{#1}}}
-\newcommand{\mycodefigcpt}   [1]{{\myenfigcptfnt{#1}}}
+\newcommand{\mymmfigcpt}   [1]{{\mymmfigcptfnt{#1}}}
+
 \newcommand{\myenlstcpt}   [1]{{\myenlstcptfnt{#1}}}
+\newcommand{\mymmlstcpt} [1]{{\mymmlstcptfnt{#1}}}
 \newcommand{\mycodelstcpt}   [1]{{\mycodegeneric{#1}}}
+\newcommand{\myLstPlaceHolder}[1]{{\itshape{\mycodegeneric{#1}}}}
 
 %%%=================================================================================================
 %%% TOC, FIGURE, LISTING CAPTIONS
@@ -384,7 +416,7 @@
 
 
 %%% Code listing related
-\newfontface\pgcode[Scale=1, BoldFont={Ubuntu Mono Bold}, Script=Latin, Color=iron]{Ubuntu Mono}
+\newfontface\pgcode[Scale=0.9, BoldFont={Ubuntu Mono Bold}, Script=Latin]{Ubuntu Mono}
 % https://tex.stackexchange.com/questions/551500/elegant-margin-in-listing-environment
 
 \lstnewenvironment{lstcodeminimal}[1][]{
@@ -393,14 +425,14 @@
       %backgroundcolor=\color{gray!10!white},
       breaklines=false,
       tabsize=8,
-      basicstyle   = \pgcode,
-      commentstyle = \color{gray},
+      basicstyle   = \color{tungsten}\pgcode\addfontfeature{Mapping=no-mapping-ligtex},
+      commentstyle = \color{lightgray},
       keywordstyle = \color{darkgray}\textbf,
       stringstyle  = \color{green!70!black},
       stringstyle  = \color{red},
       columns      = fullflexible,
       numberstyle  = \scriptsize\sffamily\color{gray},
-      showstringspaces = false,
+      showstringspaces = true,
       %frame=single,
       %framerule=0pt,
       %framextopmargin=1pt,
@@ -409,22 +441,24 @@
       xleftmargin=0pt,
       %framesep=3pt,
       %xleftmargin=3pt,
-      linewidth={\dimexpr \linewidth-3pt}  
+      linewidth={\dimexpr \linewidth-3pt},
+      escapeinside={(*@}{@*)}  
     }
 }{}
 
+%\enlargethispage{\baselineskip}
 \lstnewenvironment{lstcodesimple}[1][1]{
   \lstset{
       language     = Java,
       float=t,
       backgroundcolor=\color{gray!10!white},
-      breaklines=false,
+      breaklines=true,
       tabsize=8,
-      basicstyle   = \pgcode,
+      basicstyle   = \color{tungsten}\pgcode\addfontfeature{Mapping=no-mapping-ligtex},
       commentstyle = \color{gray},
       keywordstyle = \color{darkgray}\textbf,
-      stringstyle  = \color{green!70!black},
-      stringstyle  = \color{red},
+      %stringstyle  = \color{green!70!black},
+      %stringstyle  = \color{red},
       columns      = fullflexible,
       numberstyle  = \scriptsize\sffamily\color{gray},
       showstringspaces = false,
@@ -438,9 +472,41 @@
       xleftmargin=3pt,
       linewidth={\dimexpr \linewidth-3pt},
       belowcaptionskip=5pt,
+      escapeinside={(*@}{@*)}, 
       caption=#1
   }
 }{}
+
+%\enlargethispage{\baselineskip}
+\lstnewenvironment{lstcodelong}[1][1]{
+  \lstset{
+    language     = Java,
+    backgroundcolor=\color{gray!10!white},
+    breaklines=true,
+    tabsize=8,
+    basicstyle   = \color{tungsten}\pgcode\addfontfeature{Mapping=no-mapping-ligtex},
+    commentstyle = \color{gray},
+    keywordstyle = \color{darkgray}\textbf,
+    %stringstyle  = \color{green!70!black},
+    %stringstyle  = \color{red},
+    columns      = fullflexible,
+    numberstyle  = \scriptsize\sffamily\color{gray},
+    showstringspaces = false,
+    frame=single,
+    framerule=0pt,
+    %framextopmargin=1pt,
+    %framexbottommargin=1pt,
+    %framexleftmargin=1pt,
+    %xleftmargin=4pt,
+    framesep=3pt,
+    xleftmargin=3pt,
+    linewidth={\dimexpr \linewidth-3pt},
+    belowcaptionskip=5pt,
+    escapeinside={(*@}{@*)}, 
+    caption=#1
+  }
+}{}
+
 
 %%% Custom utility commands
 \newcommand*\cleartoleftpage{%
@@ -453,6 +519,8 @@
 
 \newcommand{\Fig}{ပုံ\xspace}
 \newcommand{\Lst}{\myen{Listing}\xspace}
+\newcommand{\Tbl}{ဇယား\xspace}
+
 \newcommand{\enprogramming}{ပရိုဂရမ်းမင်း{\myen{(programming)}}}
 \newcommand{\mmprogramming}{ပရိုဂရမ်းမင်း}
 \newcommand{\enprogram}{ပရိုဂရမ်{\myen{(program)}}}
@@ -512,16 +580,46 @@
 \newcommand{\enBody}{ဘော်ဒီ{\myen{body}}}
 \newcommand{\mmBody}{ဘော်ဒီ}
 
+\newcommand{\enProblemDecomposition}{{\myen{problem decomposition}}\xspace}
+\newcommand{\mmProblemDecomposition}{{\myen{problem decomposition}}\xspace}
+
 \newcommand{\enForLoop}{{\mycode{for} \myen{loop}}\xspace}
 \newcommand{\enForLoopBody}{{\mycode{for} \myen{loop} \mmBody}\xspace}
 \newcommand{\enWhileLoop}{{\mycode{while} \myen{loop}}\xspace}
 \newcommand{\enWhileLoopBody}{{\mycode{while} \myen{loop} \mmBody}\xspace}
 
-\newcommand{\enIf}{{\myen{template}}\xspace}
-\newcommand{\enIfElse}{{\myen{template}}\xspace}
+\newcommand{\enIfStatement}{{\mycode{if} \myen{statement}}\xspace}
+\newcommand{\enIfElseStatement}{{\mycode{if else} \myen{statement}}\xspace}
 
 \newcommand{\enCondition}{ကွန်ဒီးရှင်း{\myen{condition}}}
 \newcommand{\mmCondition}{ကွန်ဒီးရှင်း}
+
+\newcommand{\enHighLevel}{အပေါ်ယံ{\myen{high level}}}
+\newcommand{\mmHighLevel}{အပေါ်ယံ}
+
+\newcommand{\enLoop}{{\myen{loop}}\xspace}
+\newcommand{\mmLoop}{\myen{loop}\xspace}
+
+\newcommand{\enLoopExits}{\myen{loop}\ ထဲကနေထွက်သွား{(\myen{loop exits})}\xspace}
+\newcommand{\mmLoopExits}{\myen{loop}\ ထဲကနေထွက်သွား \xspace}
+
+\newcommand{\enLoopBody}{{\myen{loop} \mmBody}\xspace}
+\newcommand{\mmLoopBody}{{\myen{loop} \mmBody}\xspace}
+
+\newcommand{\enTopDown}{{\myen{top-down}}\xspace}
+\newcommand{\mmTopDown}{{\myen{top-down}}\xspace}
+
+\newcommand{\enStepWiseRefinement}{တစ်ဆင့်ခြင်း မွမ်းမံခြင်း{\myen{(stepwise refinement)}}\xspace}
+\newcommand{\mmStepWiseRefinement}{{\myen{stepwise refinement}}\xspace}
+
+\newcommand{\enInfiniteLoop}{{\myen{infinite loop} \mmBody}\xspace}
+\newcommand{\mmInfiniteLoop}{{\myen{infinite loop} \mmBody}\xspace}
+
+\newcommand{\enLoopNeverEntered}{“\enLoop ထဲကို လုံးဝ မဝင်ဘူး”{\myen{(loop is never entered)}}\xspace}
+\newcommand{\mmLoopNeverEntered}{{\enLoop ထဲကို မဝင်ဘူး}\xspace}
+
+
+
 
 \newfontfamily{\MymrSubst}{Noto Serif Myanmar SemiCondensed Bold}
 
@@ -563,7 +661,8 @@
 %\include{ch00_testing}
 \include{ch01}
 \include{ch02}
-%\include{ch03}
+
+\include{ch03}
 
 
 

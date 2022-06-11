@@ -192,7 +192,7 @@ public class CococonutTree extends stanford.karel.Karel{
 }
 \end{lstcodesimple}
 
-ကားရဲလ်ကို လမ်းတလျှောက် \mmbeeper  တွေချထားခိုင်းချင်တယ်။ လမ်းအရှည်က ဘယ်လောက်ဖြစ်ဖြစ် အပြည့်ချထားပေးရမယ်။ လမ်းအရှည်က ပုံသေမဟုတ်တဲ့အတွက် ရှေ့မှာရှင်းနေတ၍ \mmbeeper ချလိုက် ရှေ့တိုးလိုက် ထပ်ခါထပ်ခါ လုပ်ခိုင်းရမှာပေါ့။ 
+နောက်ထပ် ဥပမာတစ်ခု ကြည့်ရအောင်။ ကားရဲလ်ကို လမ်းတလျှောက် \mmbeeper  တွေချထားခိုင်းချင်တယ်။ လမ်းအရှည်က ဘယ်လောက်ဖြစ်ဖြစ် အပြည့်ချထားပေးရမယ်။ လမ်းအရှည်က ပုံသေမဟုတ်တဲ့အတွက် ရှေ့မှာရှင်းနေသ၍ \mmbeeper ချလိုက် ရှေ့တိုးလိုက် ထပ်ခါထပ်ခါ လုပ်ခိုင်းရမှာပေါ့။ 
 
 \begin{lstcodesimple}[float, caption={\mycodelstcpt{MakeBeeperRow.java} \myenlstcpt{A}}, label={lst:MakeBeeperRow}]
 public class MakeBeeperRow extends stanford.karel.Karel{
@@ -201,10 +201,99 @@ public class MakeBeeperRow extends stanford.karel.Karel{
                     putBeeper();
                     move();
             }
-            putBeeper()
+            putBeeper();
     }
 }
 \end{lstcodesimple}
+
+\enForLoop မှာလိုပဲ \myen{loop} \mmBody ကို နောက်ဆုံးအကြိမ် လုပ်ဆောင်အပြီးမှာ \mmbeeper ချဖို့ကျန်နေမယ်။ ဒါကြောင့် \enWhileLoopBody နောက်တစ်လိုင်းမှာ \mycode{putBeeper();} ပါရမှာဖြစ်တယ်။
+
+\begin{figure}[tbh!]
+    \caption{\myenlstcpt{MakeBeeperRow}}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.75in, left]{ch02/MakeBeeperRow/init.jpg}
+        \caption{}
+        \label{subfig:MakeBeeperRowA}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.75in, left]{ch02/MakeBeeperRow/1st_iter.jpg}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.75in, left]{ch02/MakeBeeperRow/2nd_iter.jpg}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.75in, left]{ch02/MakeBeeperRow/3rd_iter.jpg}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.75in, left]{ch02/MakeBeeperRow/4th_iter.jpg}
+        \caption{}
+    \end{subfigure}
+    \label{fig:MakeBeeperRowIters}
+\end{figure}
+
+\enWhileLoop အလုပ်လုပ်ပုံက အခုလိုပါ။  \mmCondition ကို အရင်ဆုံး စစ်ပါတယ်။ မှန်လျှင် \mmBody ထဲက \mmcommand တွေကို လုပ်ဆောင်တယ်။ တစ်ကြိမ်ကျော့ပြီးတိုင်း \mmCondition ကိုပြန်စစ်ပါတယ်။ မှန်နေသေးလျှင် \mmBody ထဲက \mmcommand တွေကို ထပ်ပြီးကျော့ပေးပါတယ်။ ဒီလိုမျိုး \mmCondition စစ်လိုက်၊ မှန်နေရင် ပြန်ကျော့လိုက်ကို ထပ်ခါထပ်ခါ လုပ်နေပြီး \mmCondition စစ်လိုက်လို့ မှားနေတဲ့ အခါကျတော့မှ ပြန်ကျော့တာကို ရပ်လိုက်တာဖြစ်တယ်။ ပြန်ကျော့တာရပ်လိုက်တာကို \enLoopExits တယ်လို့ ပြောလေ့ရှိတယ်။
+
+\mmLoopExits သွားပြီးနောက် \mmLoopBody ‌အောက်ကမှာရှိတဲ့လိုင်းတွေကို ဆက်ပြီးလုပ်ဆောင်မှာ ဖြစ်တယ်။ ရှေ့ကဥပမာမှာ လေးကြိမ်မြောက်ထိ \mycode{frontIsClear} \mmCondition က မှန်နေတယ်။ ဒါကြောင့် လေးခါကျော့ ခံရမယ်။ ငါးကြိမ်မြောက် \mmCondition စစ်တဲ့အခါမှာတော့ \mycode{frontIsClear} ကမှားနေပြီ။ ရှေ့မှာ နံရံပိတ်နေတယ်။ ထပ်မကျော့တော့ပဲ \mmLoopExits ပြီး နောက်တလိုင်းက \mycode{putBeeper();} ကို ဆက်လက်လုပ်ဆောင်တယ်။
+
+\enWhileLoop \mmCondition က ဘယ်တော့မှ မမှားတော့ပဲ အမြဲမှန်နေတာမျိုးရှိနိုင်တယ်။ ဒီအခါမှာတော့ \enLoop ထဲကနေ ဘယ်တော့မှ ထွက်မသွားတော့ပဲ \mmBody ထဲက \mmcommand တွေကို ထာဝရ လုပ်ဆောင်နေတော့မှာ ဖြစ်တယ်။ ဒီလို အစဉ်အမြဲ ပြန်ကျော့နေမယ့် \mmLoop ကို \mmInfiniteLoop လို့ခေါ်ပါတယ်။ \enInfiniteLoop ထဲကနေ မထွက်တော့တဲ့ အတွက် \mmLoopBody အောက် လိုင်းတွေမှာရှိတဲ့ \mmcommand တွေကိုလည်း လုပ်ဆောင်မှာ မဟုတ်ပါဘူး။ 
+
+\noindent \Lst \vref*{lst:GoAroundForever} မှာ \mycode{pickBeeper();} ကို ဘယ်တော့မှ လုပ်ဆောင်ဖြစ်မှာ မဟုတ်ပါဘူး။
+
+\begin{lstcodesimple}[float, caption={\mycodelstcpt{GoAroundForever.java} \myenlstcpt{A}}, label={lst:GoAroundForever}]
+public class GoAroundForever extends stanford.karel.Karel{
+    public void run(){
+            //Karel will never get out of this loop
+            while(frontIsClear()) {
+                    move();
+                    turnLeft();
+            }
+            //This command will never be executed
+            pickBeeper();
+    }
+}
+\end{lstcodesimple}
+
+\enWhileLoop \enCondition က ပထမဆုံး စစစ်လိုက်တဲ့ အခါမှာပဲ မှားနေရင် \mmcommand တွေကို တစ်ခါမှ မကျော့ပေးတော့ပဲ \mmLoopExits မှာဖြစ်တယ်။ ဒါကိုတော့ \enLoopNeverEntered လို့ပြောလေ့ရှိတယ်။
+
+\begin{lstcodesimple}[float, caption={\mycodelstcpt{LoopNeverEntered.java} \myenlstcpt{A}}, label={lst:LoopNeverEntered}]
+public class LoopNeverEntered extends stanford.karel.Karel{
+    public void run(){
+            // This loop is never entered for default world
+            // and its body will be totally skipped
+            while(frontIsClear()) {
+                    move();
+                    turnLeft();
+                    putBeeper();
+            }
+            // Commands below will be executed as usual
+            turnLeft();
+            move();
+            putBeeper();
+    }
+}
+\end{lstcodesimple}
+
+\begin{figure}[tbh!]
+    \caption{\myenlstcpt{LoopNeverEntered}}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/LoopNeverEntered/init.jpg}
+        \caption{}
+        \label{subfig:LoopNeverEnteredA}
+    \end{subfigure}
+    \hspace{0.1in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/LoopNeverEntered/final.jpg}
+        \caption{}
+    \end{subfigure}
+    \label{fig:LoopNeverEntered}
+\end{figure}
 
 %|@{}p{4cm}@{}|@{}p{5cm}@{}|
 \begin{table}
@@ -226,5 +315,106 @@ public class MakeBeeperRow extends stanford.karel.Karel{
 \label{tbl:KarelConditions}
 \end{tabular}
 \end{table}
- 
+
+\section{\mycodesecttl{if}  \myensecttl{statement}}
+\enIfStatement ကို \mmcommand တွေကို အခြေအနေမှန်တော့မှ လုပ်ဆောင်စေချင်တဲ့ အခါသုံးတယ်။ \mmsyntax ကတော့ အခုလိုပုံစံ။
+\begin{lstcodeminimal}
+if ( (*@\myLstPlaceHolder{CONDITION}@*) ) {
+        // commands to be executed if (*@\myLstPlaceHolder{CONDITION}@*) is true
+}
+\end{lstcodeminimal}
+\noindent \myLstPlaceHolder{CONDITION} နေရာမှာ \Tbl \vref*{tbl:KarelConditions} ထဲက \mmCondition တစ်ခုကို အစားထိုးရမှာပါ။ လက်တွေ့ ဥပမာတစ်ခုကြည့်ရအောင်။ ကားရဲလ်က 
+
+\begin{figure}[tbh!]
+    \caption{\myenlstcpt{MooveMoveBeeperToOtherSide}}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/MoveBeeperToOtherSide/init_w1.jpg}
+        \caption{}
+        \label{subfig:MooveMoveBeeperToOtherSideInitW1}
+    \end{subfigure}
+    \hspace{0.1in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/MoveBeeperToOtherSide/final_w1.jpg}
+        \caption{}
+    \end{subfigure}
+
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/MoveBeeperToOtherSide/init_w2.jpg}
+        \caption{}
+        \label{subfig:MooveMoveBeeperToOtherSideInitW2}
+    \end{subfigure}
+    \hspace{0.1in}
+    \begin{subfigure}[t]{0.46\textwidth}
+        \includegraphics[width=2.5in, left]{ch02/MoveBeeperToOtherSide/final_w2.jpg}
+        \caption{}
+    \end{subfigure}
+    \label{fig:MooveMoveBeeperToOtherSide}
+\end{figure}
+
+\begin{lstcodesimple}[float, caption={\mycodelstcpt{MoveBeeperToOtherSide.java}}, label={lst:MoveBeeperToOtherSide}]
+public class MoveBeeperToOtherSide extends stanford.karel.Karel {
+    public void run() {
+
+            // Code to go pick beeper
+
+            // Check if beeper is there and move to the other side
+            if (beepersPresent()) {
+                    pickBeeper();
+                    turnLeft();
+                    move();
+                    turnRight();
+                    move();
+                    turnRight();
+                    move();
+                    putBeeper();
+                    turnLeft();
+            }
+    }
+
+    // turnRight method definition
+}
+
+\end{lstcodesimple}
+
+\section{\mycodesecttl{if else}  \myensecttl{statement}}
+\enIfElseStatement ကိုတော့ အခြေအနေတစ်ရပ် မှန်လျှင် လုပ်ဆောင်ချင်တာနဲ့ မှားလျှင် လုပ်ဆောင်ချင်တာ က မတူပဲကွဲပြား နေတဲ့အခါ သုံးတယ်။ \mmsyntax ကတော့ အခုလိုပုံစံ။
+\begin{lstcodeminimal}
+if ( (*@\myLstPlaceHolder{CONDITION}@*) ) {
+        // commands to be executed if (*@\myLstPlaceHolder{CONDITION}@*) is true
+} else {
+        // commands to be executed if (*@\myLstPlaceHolder{CONDITION}@*) is false
+}
+\end{lstcodeminimal}
+\noindent \myLstPlaceHolder{CONDITION} နေရာမှာ \Tbl \vref*{tbl:KarelConditions} ထဲက \mmCondition တစ်ခုကို အစားထိုးရမှာပါ။ ရှေ့မှာတွေ့ခဲ့တဲ့ ဥပမာမှာလိုပဲ \mmbeeper ရှိရင် ရွှေ့ပေးရမယ်၊ မရှိရင်တော့ စထွက်တဲ့နေရာကို ပြန်လာခိုင်းရမယ်ဆိုပါစို့။ ဒါဆိုရင် ဘိပါရှိရင် ရွှေ့ရမယ်၊ မရှိခဲ့ရင် (တနည်းအားဖြင့် beepersPresent \mmCondition ကမှားခဲ့လျှင်) ပြန်လာရမှာဖြစ်တယ်။ 
+
+\begin{lstcodesimple}[float, caption={\mycodelstcpt{MoveBeeperToOtherSideOrComeBack.java}}, label={lst:MoveBeeperToOtherSideOrComeBack}]
+public class MoveBeeperToOtherSideOrComeBack extends stanford.karel.Karel {
+        public void run() {
+                
+                // ... 
+
+                if (beepersPresent()) {
+                        pickBeeper();
+                        turnLeft();
+                        move();
+                        turnRight();
+                        move();
+                        turnRight();
+                        move();
+                        putBeeper();
+                        turnLeft();
+                } else {
+                        turnLeft();
+                        turnLeft();
+                        move();
+                        move();
+                        move();
+                }
+        }
+
+        // . . .turnRight method definition here
+        
+}
+\end{lstcodesimple}
+
 \end{sloppypar}

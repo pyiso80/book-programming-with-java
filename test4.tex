@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{xstring}
+\def\ReplaceStrOne#1{%
+  \IfSubStr{#1}{၁}{%
+    \StrSubstitute{#1}{၁}{1}}{#1}}
+\def\ReplaceStrTwo#1{%
+  \IfSubStr{#1}{၂}{%
+    \StrSubstitute{#1}{၂}{2}}{#1}}
+\def\ReplaceStrThree#1{%
+\IfSubStr{#1}{၃}{%
+  \StrSubstitute{#1}{၃}{3}}{#1}}
+
+\begin{document}
+
+\ReplaceStrThree{\ReplaceStrTwo{\ReplaceStrTwo{၁၁၁၂၂၂၃၃၃}}}
+
+
+\end{document}

@@ -1,23 +1,27 @@
+% !TeX program = LuaLaTeX
 \documentclass[twoside]{book}
+
+\usepackage[english]{babel}
+\babelprovide[mapdigits, import, main]{burmese}
+
 \usepackage{parskip}
 \usepackage{graphicx}
-\usepackage{myvarioref}
+\usepackage{varioref}
 \usepackage{blindtext}
 \usepackage{fontspec}
 
-
 %%% Font related tweaks
-\defaultfontfeatures{Script=Myanmar,Mapping=tex-text} 
-\fontspec[Script=Myanmar, BoldFont={Padauk Bold}, ]{Padauk}
-\setmainfont[Color=tungsten,
-                UprightFont={Padauk},
-                BoldFont={Padauk Bold},
-                ItalicFont={Padauk},
-                BoldItalicFont={Padauk Bold},
-                SmallCapsFont={Padauk},
-                SlantedFont={Padauk}]{Padauk}
-                [Renderer=Harfbuzz,Script=Myanmar]
-
+\defaultfontfeatures{Script=Myanmar,Mapping=tex-text}
+\fontspec[Script=Myanmar, BoldFont={Padauk Bold}]{Padauk}
+\setmainfont[
+  Color=tungsten,
+  UprightFont={Padauk},
+  BoldFont={Padauk Bold},
+  ItalicFont={Padauk},
+  BoldItalicFont={Padauk Bold},
+  SmallCapsFont={Padauk},
+  SlantedFont={Padauk}
+]{Padauk}[Renderer=Harfbuzz,Script=Myanmar]
 
 \def\reftextfaceafter{\reftextvario{Page is near}{Page is near} Page is near}%%
 \def\reftextafter {Page is near}%
@@ -27,26 +31,6 @@
 \def\reftextfaraway#1{(“If the referenced item is near, I should not see this.”).~\pageref{#1}}%
 \def\reftextpagerange#1#2{on QQQQ~\pageref{#1}--\pageref{#2}}%
 \def\reftextlabelrange#1#2{\ref{#1} to~\ref{#2}}%
-
-%%% Auto numbering in Myanmar %%%
-%This macro is to produce myanmar numbering by adopting the thai numbering method
-\makeatletter  
-\def\@mmnum#1{\expandafter\@@mmnum\number#1\@nil}  
-\def\@@mmnum#1{%  
-  \ifx#1\@nil  
-  \else  
-  \char\numexpr#1+"1040\relax  
-  \expandafter\@@mmnum\fi  
-}  
-\renewcommand\@arabic{\@mmnum} % to reset number in \arabic to \mmnum 
-
-\usepackage{xassoccnt}
-
-\newcounter{realpage}
-\DeclareAssociatedCounters{page}{realpage}
-\AtBeginDocument{%
-  \stepcounter{realpage}
-}
 
 \begin{document}
 \section{Figures}
@@ -77,24 +61,9 @@ the \vpageref[above figure][figure]{fig:example}.
 \blindtext
 \blindtext
 
-
-%%%%% This is not okay 
+%%%%% This is okay now
 See figure \vref*{fig:other} ----
 
-thevpagerefnum after other \is@pos@number\thevpagerefnum \xspace sddf
-
-
 See figure \vref*{fig:example} ----
-
-this is the real \therealpage
-
-this is the real \thevpagerefnum \xspace thevpagerefnum after example
-
-\ifnum2=2 % this space is important.
-This is shown if above were true.  
-\else
-This is shown if above results to false.
-\fi
-
 
 \end{document}
